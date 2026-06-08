@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belle's Beauty & Co.</title>
+  <meta name="description" content="Belle's Beauty & Co. — Hair, Makeup & Nail services. Book your appointment today." />
+
+  <!-- Google Fonts: Playfair Display (display headings) + Jost (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER — fixed nav bar
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo" onclick="showSection('landing')" role="button" tabindex="0" aria-label="Home">
+        <img src="images/headerlogo.png" alt="Belle's Beauty & Co." />
+      </div>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#" onclick="return navTo('landing')">Home</a>
+        <a href="#" onclick="return navTo('about')">About</a>
+        <a href="#sec-gallery" onclick="return navToAnchor('sec-gallery')">Gallery</a>
+        <a href="#sec-reviews" onclick="return navToAnchor('sec-reviews')">Reviews</a>
+        <a href="#sec-contact" onclick="return navToAnchor('sec-contact')">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="#" onclick="return mobileNavTo('landing')">Home</a>
+      <a href="#" onclick="return mobileNavTo('about')">About</a>
+      <a href="#sec-gallery" onclick="return mobileNavToAnchor('sec-gallery')">Gallery</a>
+      <a href="#sec-reviews" onclick="return mobileNavToAnchor('sec-reviews')">Reviews</a>
+      <a href="#sec-contact" onclick="return mobileNavToAnchor('sec-contact')">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main>
+
+    <!-- ================================
+         SECTION: LANDING
+    ================================ -->
+    <section id="landing" class="section active" aria-label="Home">
+      <div class="landing-hero">
+
+        <div class="landing-logo-wrap">
+          <img src="images/logo.png" alt="Belle's Beauty & Co." class="landing-logo" />
+        </div>
+
+        <p class="landing-tagline">Choose your service to begin.</p>
+
+        <div class="service-cards">
+
+          <!-- Card: Special Events -->
+          <div class="service-card" onclick="showServiceSection('special-events')" role="button" tabindex="0"
+               aria-label="Special Events services" onkeydown="if(event.key==='Enter') showServiceSection('special-events')">
+            <div class="card-image-wrap">
+              <img
+                src="specialevents.png"
+                alt="Special Events illustration"
+                class="card-image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- SVG fallback — shown if image file is missing -->
+              <div class="card-svg-fallback" aria-hidden="true">
+                <svg viewBox="0 0 240 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Crown -->
+                  <path d="M68 142 L68 108 L90 126 L120 88 L150 126 L172 108 L172 142 Z" stroke="#4A4540" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+                  <rect x="64" y="142" width="112" height="18" rx="3" stroke="#4A4540" stroke-width="1.2" fill="none"/>
+                  <!-- Crown gems -->
+                  <circle cx="120" cy="88" r="4" stroke="#4A4540" stroke-width="1"/>
+                  <circle cx="90" cy="126" r="3" stroke="#4A4540" stroke-width="1"/>
+                  <circle cx="150" cy="126" r="3" stroke="#4A4540" stroke-width="1"/>
+                  <!-- Sparkles left -->
+                  <line x1="44" y1="100" x2="44" y2="112" stroke="#4A4540" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="38" y1="106" x2="50" y2="106" stroke="#4A4540" stroke-width="1.2" stroke-linecap="round"/>
+                  <!-- Sparkles right -->
+                  <line x1="196" y1="96" x2="196" y2="108" stroke="#4A4540" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="190" y1="102" x2="202" y2="102" stroke="#4A4540" stroke-width="1.2" stroke-linecap="round"/>
+                  <!-- Small accent dots -->
+                  <circle cx="56" cy="80" r="2" stroke="#4A4540" stroke-width="1"/>
+                  <circle cx="184" cy="78" r="2" stroke="#4A4540" stroke-width="1"/>
+                  <!-- Florals left -->
+                  <circle cx="30" cy="156" r="5" stroke="#4A4540" stroke-width="1"/>
+                  <path d="M25 151 Q20 145 24 140" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M22 158 Q14 158 14 164" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M26 163 Q22 170 26 175" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M33 165 Q33 175 28 180" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <!-- Leaf sprigs -->
+                  <path d="M14 160 Q22 153 30 158" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <path d="M40 172 Q50 165 56 170" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <!-- Ground line -->
+                  <line x1="10" y1="186" x2="230" y2="186" stroke="#4A4540" stroke-width="0.8"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Special Events</h2>
+              <p class="card-desc">Event-ready hair and makeup for weddings, parties, and every special occasion.</p>
+              <span class="card-cta">Explore Services &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Card: Hair -->
+          <div class="service-card" onclick="showServiceSection('hair-makeup')" role="button" tabindex="0"
+               aria-label="Hair services" onkeydown="if(event.key==='Enter') showServiceSection('hair-makeup')">
+            <div class="card-image-wrap">
+              <img
+                src="images/hair-makeup.png"
+                alt="Hair tools illustration"
+                class="card-image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- SVG fallback — shown if image file is missing -->
+              <div class="card-svg-fallback" aria-hidden="true">
+                <svg viewBox="0 0 240 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Round hair brush -->
+                  <rect x="44" y="68" width="20" height="64" rx="10" stroke="#4A4540" stroke-width="1.3"/>
+                  <line x1="54" y1="68" x2="54" y2="132" stroke="#4A4540" stroke-width="0.7" stroke-dasharray="3 3"/>
+                  <!-- Curling iron barrel -->
+                  <rect x="78" y="48" width="8" height="90" rx="4" stroke="#4A4540" stroke-width="1.3"/>
+                  <path d="M78 70 Q90 70 90 80 L90 130" stroke="#4A4540" stroke-width="1.3" fill="none"/>
+                  <rect x="74" y="44" width="16" height="10" rx="3" stroke="#4A4540" stroke-width="1.2"/>
+                  <!-- Makeup brush -->
+                  <line x1="148" y1="152" x2="172" y2="76" stroke="#4A4540" stroke-width="1.8" stroke-linecap="round"/>
+                  <ellipse cx="174" cy="71" rx="7" ry="12" stroke="#4A4540" stroke-width="1.2"/>
+                  <!-- Compact mirror -->
+                  <circle cx="196" cy="136" r="22" stroke="#4A4540" stroke-width="1.2"/>
+                  <circle cx="196" cy="136" r="16" stroke="#4A4540" stroke-width="0.8"/>
+                  <line x1="174" y1="136" x2="218" y2="136" stroke="#4A4540" stroke-width="0.7"/>
+                  <!-- Florals left -->
+                  <circle cx="30" cy="156" r="5" stroke="#4A4540" stroke-width="1"/>
+                  <path d="M25 151 Q20 145 24 140" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M22 158 Q14 158 14 164" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M26 163 Q22 170 26 175" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M33 165 Q33 175 28 180" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M16 148 Q12 142 16 138 Q20 142 16 148Z" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <!-- Leaf sprigs -->
+                  <path d="M10 168 Q18 162 24 167" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <path d="M40 172 Q50 165 56 170" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <!-- Florals right -->
+                  <path d="M210 158 Q218 155 220 162" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M215 165 Q222 165 222 172" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M208 170 Q208 178 212 182" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <!-- Ground line -->
+                  <line x1="10" y1="186" x2="230" y2="186" stroke="#4A4540" stroke-width="0.8"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Hair</h2>
+              <p class="card-desc">Shampoo, blow dry, and trim services for a fresh, polished finish every time.</p>
+              <span class="card-cta">Explore Services &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Card: Nails -->
+          <div class="service-card" onclick="showServiceSection('nails')" role="button" tabindex="0"
+               aria-label="Nails services" onkeydown="if(event.key==='Enter') showServiceSection('nails')">
+            <div class="card-image-wrap">
+              <img
+                src="images/nails.png"
+                alt="Nails illustration"
+                class="card-image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- SVG fallback — shown if image file is missing -->
+              <div class="card-svg-fallback" aria-hidden="true">
+                <svg viewBox="0 0 240 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Elegant hand -->
+                  <path d="M88 152 Q82 120 84 96 Q86 76 90 64 Q93 55 98 58 Q102 62 101 82 L100 108"
+                        stroke="#4A4540" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <path d="M100 108 Q102 78 106 70 Q110 62 114 66 Q117 72 115 108"
+                        stroke="#4A4540" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <path d="M115 108 Q118 80 122 74 Q126 68 129 72 Q132 78 129 108"
+                        stroke="#4A4540" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <path d="M129 110 Q133 85 136 80 Q139 76 141 80 Q143 86 140 112"
+                        stroke="#4A4540" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+                  <!-- Nail tips (almond shape) -->
+                  <path d="M95 64 Q98 52 101 58" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M111 66 Q114 54 117 66" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M125 72 Q128 61 131 72" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M137 80 Q139 71 141 80" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <!-- Nail polish bottle 1 (tall) -->
+                  <rect x="62" y="122" width="24" height="46" rx="3" stroke="#4A4540" stroke-width="1.3"/>
+                  <rect x="67" y="109" width="14" height="15" rx="2" stroke="#4A4540" stroke-width="1.2"/>
+                  <line x1="74" y1="103" x2="74" y2="109" stroke="#4A4540" stroke-width="1.8" stroke-linecap="round"/>
+                  <!-- Nail polish bottle 2 (shorter) -->
+                  <rect x="155" y="130" width="22" height="38" rx="3" stroke="#4A4540" stroke-width="1.3"/>
+                  <rect x="159" y="119" width="14" height="13" rx="2" stroke="#4A4540" stroke-width="1.2"/>
+                  <line x1="166" y1="113" x2="166" y2="119" stroke="#4A4540" stroke-width="1.8" stroke-linecap="round"/>
+                  <!-- Nail art brush -->
+                  <line x1="188" y1="168" x2="204" y2="100" stroke="#4A4540" stroke-width="1.6" stroke-linecap="round"/>
+                  <ellipse cx="205" cy="97" rx="3" ry="7" stroke="#4A4540" stroke-width="1"/>
+                  <!-- Nail file -->
+                  <path d="M196 172 Q210 160 216 130" stroke="#4A4540" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Florals left -->
+                  <circle cx="38" cy="148" r="6" stroke="#4A4540" stroke-width="1"/>
+                  <path d="M32 143 Q26 136 30 130" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M30 150 Q22 150 20 157" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M34 156 Q28 164 32 170" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M42 156 Q44 166 40 172" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M24 138 Q20 130 24 126 Q28 130 24 138Z" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <!-- Leaf sprigs -->
+                  <path d="M14 160 Q22 153 30 158" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <path d="M46 168 Q56 162 62 167" stroke="#4A4540" stroke-width="0.9" fill="none"/>
+                  <!-- Florals right -->
+                  <circle cx="224" cy="152" r="5" stroke="#4A4540" stroke-width="1"/>
+                  <path d="M228 158 Q234 162 232 168" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <path d="M222 160 Q220 168 224 174" stroke="#4A4540" stroke-width="1" fill="none"/>
+                  <!-- Ground line -->
+                  <line x1="10" y1="186" x2="230" y2="186" stroke="#4A4540" stroke-width="0.8"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Nails</h2>
+              <p class="card-desc">Stunning nail artistry from polished classics to intricate custom designs.</p>
+              <span class="card-cta">Explore Services &rarr;</span>
+            </div>
+          </div>
+
+        </div><!-- /.service-cards -->
+      </div><!-- /.landing-hero -->
+
+      <!-- ================================
+           GALLERY BLOCK
+      ================================ -->
+      <div class="landing-block" id="sec-gallery" aria-label="Gallery">
+        <div class="landing-block-inner">
+          <div class="section-header">
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-subtitle">Our work speaks for itself</p>
+            <div class="section-divider"></div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-placeholder-item">
+              <span>Gallery coming soon</span>
+            </div>
+            <div class="gallery-placeholder-item"></div>
+            <div class="gallery-placeholder-item"></div>
+            <div class="gallery-placeholder-item"></div>
+            <div class="gallery-placeholder-item"></div>
+            <div class="gallery-placeholder-item"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================
+           REVIEWS BLOCK
+      ================================ -->
+      <div class="landing-block bg-mid" id="sec-reviews" aria-label="Client Reviews">
+        <div class="landing-block-inner">
+          <div class="section-header">
+            <h2 class="section-title">Client Reviews</h2>
+            <p class="section-subtitle">What our clients say</p>
+            <div class="section-divider"></div>
+          </div>
+          <div class="reviews-grid">
+            <div class="review-card">
+              <div class="review-header">
+                <svg class="review-g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+                <div class="review-meta">
+                  <span class="review-name">Jasmine R.</span>
+                  <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="review-text">"I came in for highlights and a trim and left absolutely obsessed. She matched my inspo pic perfectly — my color looks so natural and blended. Best salon experience I've had."</p>
+            </div>
+            <div class="review-card">
+              <div class="review-header">
+                <svg class="review-g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+                <div class="review-meta">
+                  <span class="review-name">Maya T.</span>
+                  <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="review-text">"My gel full set lasted over three weeks with zero lifting. The nail art was exactly what I pinned — so detailed and clean. I will not go anywhere else for my nails, period."</p>
+            </div>
+            <div class="review-card">
+              <div class="review-header">
+                <svg class="review-g-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+                <div class="review-meta">
+                  <span class="review-name">Tiffany W.</span>
+                  <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="review-text">"The vibe is so cute and relaxing — I felt pampered from the second I walked in. Got a blowout and a mani and both were flawless. Already booked my next appointment!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================
+           CONTACT BLOCK
+      ================================ -->
+      <div class="landing-block bg-mid" id="sec-contact" aria-label="Contact">
+        <div class="landing-block-inner landing-block-inner--narrow">
+          <div class="section-header">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">General inquiries</p>
+            <div class="section-divider"></div>
+          </div>
+          <form class="inquiry-form" id="inquiry-form" onsubmit="return submitInquiry(event)">
+            <div class="form-row">
+              <label for="inq-name">Full Name <span class="required-star">*</span></label>
+              <input id="inq-name" type="text" placeholder="Your name" autocomplete="name" required />
+            </div>
+            <div class="form-row">
+              <label for="inq-email">Email <span class="required-star">*</span></label>
+              <input id="inq-email" type="email" placeholder="your@email.com" autocomplete="email" required />
+            </div>
+            <div class="form-row">
+              <label for="inq-phone">Phone <span class="optional">(optional)</span></label>
+              <input id="inq-phone" type="tel" placeholder="+1 (000) 000-0000" autocomplete="tel" />
+            </div>
+            <div class="form-row">
+              <label for="inq-message">Message <span class="required-star">*</span></label>
+              <textarea id="inq-message" placeholder="How can we help you?" required></textarea>
+            </div>
+            <div id="inq-error" class="inq-error" hidden></div>
+            <button type="submit" class="confirm-btn">Send Message</button>
+          </form>
+          <div class="inquiry-success" id="inquiry-success" hidden>
+            <div class="success-ring">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="22" stroke="#2C2826" stroke-width="1.5"/>
+                <path d="M14 24.5 L21 31.5 L34 18" stroke="#2C2826" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Message Sent</h3>
+            <p>Thank you for reaching out. We'll be in touch soon!</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         SECTION: SPECIAL EVENTS
+    ================================ -->
+    <section id="special-events" class="section" aria-label="Special Events services">
+      <div class="section-inner">
+        <button class="back-btn" onclick="showSection('landing')" aria-label="Back to home">
+          &larr; Back
+        </button>
+        <div class="section-header">
+          <h1 class="section-title">Special Events</h1>
+          <p class="section-subtitle">Professional glam for your most memorable moments</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="services-list">
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Event Makeup</h3>
+              <p class="service-desc">Flawless, long-lasting makeup application for weddings, parties, photoshoots, and any special occasion.</p>
+              <span class="service-price">$80 &nbsp;&middot;&nbsp; 1 hr</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Event Makeup', 'special-events')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Event Hair</h3>
+              <p class="service-desc">Elegant event styling — updos, curls, and polished looks tailored to your vision and occasion.</p>
+              <span class="service-price">$55 &nbsp;&middot;&nbsp; 1 hr</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Event Hair', 'special-events')">
+              Book Appointment
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         SECTION: HAIR SERVICES
+    ================================ -->
+    <section id="hair-makeup" class="section" aria-label="Hair services">
+      <div class="section-inner">
+        <button class="back-btn" onclick="showSection('landing')" aria-label="Back to home">
+          &larr; Back
+        </button>
+        <div class="section-header">
+          <h1 class="section-title">Hair</h1>
+          <p class="section-subtitle">Shampoo, blow dry &amp; trim services</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="services-list">
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Shampoo &amp; Blow Dry</h3>
+              <p class="service-desc">A thorough shampoo and conditioning treatment followed by a smooth, polished blow dry.</p>
+              <span class="service-price">$25 &nbsp;&middot;&nbsp; 1 hr</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Shampoo & Blow Dry', 'hair-makeup')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Shampoo, Hair Trim &amp; Blow Dry</h3>
+              <p class="service-desc">Shampoo and condition followed by a clean trim to remove split ends, finished with a blow dry.</p>
+              <span class="service-price">$30 &nbsp;&middot;&nbsp; 1&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Shampoo, Hair Trim & Blow Dry', 'hair-makeup')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Dry Trim</h3>
+              <p class="service-desc">A quick precision trim on dry hair — perfect for a shape-up between appointments.</p>
+              <span class="service-price">$20 &nbsp;&middot;&nbsp; 30 min</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Dry Trim', 'hair-makeup')">
+              Book Appointment
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         SECTION: NAILS SERVICES
+    ================================ -->
+    <section id="nails" class="section" aria-label="Nails services">
+      <div class="section-inner">
+        <button class="back-btn" onclick="showSection('landing')" aria-label="Back to home">
+          &larr; Back
+        </button>
+        <div class="section-header">
+          <h1 class="section-title">Nails</h1>
+          <p class="section-subtitle">Artistry crafted for your fingertips</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="services-list">
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Regular Polish</h3>
+              <p class="service-desc">Classic nail polish applied with care for a clean, fresh finish.</p>
+              <span class="service-price">$30 &nbsp;&middot;&nbsp; 1&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Regular Polish', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Gel Polish on Natural Nail</h3>
+              <p class="service-desc">Long-lasting gel color applied directly to your natural nail for a chip-free, glossy finish.</p>
+              <span class="service-price">$35 &nbsp;&middot;&nbsp; 1&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Gel Polish on Natural Nail', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Gel X Nails w/ Gel Polish</h3>
+              <p class="service-desc">Gel X extensions applied and finished with gel polish for length, strength, and a flawless look.</p>
+              <span class="service-price">$45 &nbsp;&middot;&nbsp; 2 hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Gel X Nails w/ Gel Polish', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Gel X Nails w/ Builder Gel &amp; Polish</h3>
+              <p class="service-desc">Gel X extensions structured with builder gel for extra durability, finished with gel polish.</p>
+              <span class="service-price">$50 &nbsp;&middot;&nbsp; 2&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Gel X Nails w/ Builder Gel & Polish', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Builder Gel on Natural Nail (No Polish)</h3>
+              <p class="service-desc">Builder gel applied directly to the natural nail to strengthen and extend with a clean, bare finish.</p>
+              <span class="service-price">$40 &nbsp;&middot;&nbsp; 2&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Builder Gel on Natural Nail (No Polish)', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Builder Gel on Natural Nail w/ Polish</h3>
+              <p class="service-desc">Builder gel on the natural nail for strength and structure, finished with gel polish color.</p>
+              <span class="service-price">$45 &nbsp;&middot;&nbsp; 2&frac12; hrs</span>
+            </div>
+            <button class="book-btn" onclick="showBooking('Builder Gel on Natural Nail w/ Polish', 'nails')">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="service-item service-item--addon">
+            <div class="service-info">
+              <h3 class="service-name">Chrome Finish</h3>
+              <p class="service-desc">Mirror chrome powder added to any nail service for a stunning, reflective finish. Request when booking.</p>
+              <span class="service-price">+$5 &nbsp;&middot;&nbsp; Add-on</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         SECTION: BOOKING CALENDAR
+    ================================ -->
+    <section id="booking" class="section" aria-label="Book an appointment">
+      <div class="section-inner booking-section-inner">
+        <button class="back-btn" id="booking-back-btn" onclick="goBackFromBooking()" aria-label="Back to services">
+          &larr; Back
+        </button>
+        <div class="section-header">
+          <h1 class="section-title">Book an Appointment</h1>
+          <p class="section-subtitle" id="booking-service-label">Select a date and time</p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="booking-layout">
+
+          <!-- Calendar -->
+          <div class="calendar-wrap" aria-label="Appointment calendar">
+            <div class="calendar-header">
+              <button class="cal-nav" id="prev-month" aria-label="Previous month">&#8249;</button>
+              <h3 class="cal-month-label" id="cal-month-label"></h3>
+              <button class="cal-nav" id="next-month" aria-label="Next month">&#8250;</button>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true">
+              <span>Sun</span><span>Mon</span><span>Tue</span>
+              <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="calendar-days" id="calendar-days" role="grid" aria-label="Select a date"></div>
+            <p class="cal-legend">
+              <!--
+                GOOGLE CALENDAR INTEGRATION:
+                Dates with any available slots are highlighted.
+                Grayed-out dates are fully booked or unavailable.
+                Availability is fetched from Google Calendar's freebusy API.
+              -->
+              <span class="legend-dot available-dot"></span> Available &nbsp;
+              <span class="legend-dot unavailable-dot"></span> Unavailable
+            </p>
+          </div>
+
+          <!-- Time slots + Confirm form -->
+          <div class="timeslots-panel" id="timeslots-panel">
+            <h3 class="timeslots-heading" id="timeslots-heading">
+              Select a date to view available times
+            </h3>
+            <div class="timeslots-grid" id="timeslots-grid" role="group" aria-label="Available time slots"></div>
+
+            <!-- Booking confirmation form — hidden until time slot selected -->
+            <div class="confirm-form" id="confirm-form" hidden>
+              <h3 class="confirm-form-title">Confirm Your Appointment</h3>
+              <div class="confirm-summary" id="confirm-summary"></div>
+              <div class="form-row">
+                <label for="field-name">Full Name</label>
+                <input id="field-name" type="text" placeholder="Your name" autocomplete="name" />
+              </div>
+              <div class="form-row">
+                <label for="field-email">Email</label>
+                <input id="field-email" type="email" placeholder="your@email.com" autocomplete="email" />
+              </div>
+              <div class="form-row">
+                <label for="field-phone">Phone</label>
+                <input id="field-phone" type="tel" placeholder="+1 (000) 000-0000" autocomplete="tel" />
+              </div>
+              <div class="form-row">
+                <label for="field-notes">Notes <span class="optional">(optional)</span></label>
+                <textarea id="field-notes" placeholder="Any special requests or notes..."></textarea>
+              </div>
+              <button class="confirm-btn" onclick="submitBooking()">Confirm Appointment</button>
+              <!--
+                GOOGLE CALENDAR INTEGRATION:
+                submitBooking() will call the Google Calendar API to create an event:
+                  POST https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events
+                  Authorization: Bearer {accessToken}
+                  Body: { summary, description, start: { dateTime }, end: { dateTime }, attendees }
+                OAuth 2.0 client-side flow (google-auth-library) should be initialized
+                before this button is clickable.
+              -->
+            </div>
+
+            <!-- Success state — shown after confirmed booking -->
+            <div class="booking-success" id="booking-success" hidden>
+              <div class="success-ring">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="24" cy="24" r="22" stroke="#2C2826" stroke-width="1.5"/>
+                  <path d="M14 24.5 L21 31.5 L34 18" stroke="#2C2826" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>Appointment Confirmed</h3>
+              <p id="success-details"></p>
+              <button class="book-btn" style="margin-top:1.5rem" onclick="showSection('landing')">
+                Back to Home
+              </button>
+            </div>
+
+          </div><!-- /.timeslots-panel -->
+        </div><!-- /.booking-layout -->
+      </div>
+    </section>
+
+
+    <!-- ================================
+         SECTION: ABOUT
+    ================================ -->
+    <section id="about" class="section" aria-label="About">
+      <div class="section-inner content-section-inner">
+        <button class="back-btn" onclick="showSection('landing')">&larr; Back</button>
+        <div class="section-header">
+          <h1 class="section-title">About Belle's</h1>
+          <div class="section-divider"></div>
+        </div>
+        <div class="about-layout">
+          <div class="about-logo-col">
+            <img src="images/logo.png" alt="Belle's Beauty & Co." class="about-logo" />
+          </div>
+          <div class="about-text-col">
+            <div class="placeholder-block">
+              <span class="placeholder-label">Years of experience</span>
+              <p class="placeholder-value">[Coming soon — fill in years &amp; story]</p>
+            </div>
+            <div class="placeholder-block">
+              <span class="placeholder-label">About Belle's</span>
+              <p class="placeholder-value">[Coming soon — your story and mission]</p>
+            </div>
+            <div class="placeholder-block">
+              <span class="placeholder-label">Meet the artist</span>
+              <p class="placeholder-value">[Coming soon — bio and credentials]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <img src="images/logo.png" alt="Belle's Beauty & Co." class="footer-logo" />
+      <p class="footer-tagline">Beauty, artistry &amp; confidence.</p>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/1Wct53LKBZ/?mibextid=wwXIfr"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-fb-link"
+         aria-label="Follow Belle's Beauty &amp; Co. on Facebook">
+        <svg class="footer-fb-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Find us on Facebook</span>
+      </a>
+
+      <!-- Google Maps -->
+      <div class="footer-map-wrap">
+        <div class="footer-map-container">
+          <iframe
+            src="https://maps.google.com/maps?q=25025+Highway+15+Union+MS+39365&output=embed&z=14"
+            width="100%"
+            height="240"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Belle's Beauty &amp; Co. location"
+            aria-label="Map showing salon location at 25025 Highway 15, Union, MS 39365">
+          </iframe>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=25025+Highway+15+Union+MS+39365"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="footer-map-overlay"
+             aria-label="Get directions to Belle's Beauty &amp; Co. in Google Maps">
+          </a>
+        </div>
+        <p class="footer-address">
+          <svg class="footer-pin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          25025 Highway 15, Union, MS 39365
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="#" onclick="return navTo('landing')">Home</a>
+        <a href="#" onclick="return navTo('about')">About</a>
+        <a href="#sec-gallery" onclick="return navToAnchor('sec-gallery')">Gallery</a>
+        <a href="#sec-contact" onclick="return navToAnchor('sec-contact')">Contact</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Belle's Beauty &amp; Co. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+
+  <script src="js/calendar.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
