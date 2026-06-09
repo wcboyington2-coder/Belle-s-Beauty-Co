@@ -4,13 +4,19 @@
 
 'use strict';
 
+// ── Google Apps Script URL ────────────────────────────────────
+// Paste your Web App URL here after deploying google-apps-script/Code.gs.
+// Leave as empty string to use sample data during development.
+const APPS_SCRIPT_URL = '';
+
 // ── State ────────────────────────────────────────────────────
 const state = {
-  currentSection:  'landing',
+  currentSection: 'landing',
   previousSection: null,   // section we came from before booking
   selectedService: null,
-  selectedDate:    null,
-  selectedTime:    null,
+  selectedDate: null,       // display format: "Wednesday, June 11, 2026"
+  selectedDateKey: null,    // ISO key: "2026-06-11"
+  selectedTime: null,
 };
 
 // ── Section routing ──────────────────────────────────────────
@@ -42,10 +48,11 @@ function showServiceSection(category) {
  * @param {string} fromSection - The service section to return to on back
  */
 function showBooking(service, fromSection) {
-  state.selectedService  = service;
-  state.previousSection  = fromSection || state.currentSection;
-  state.selectedDate     = null;
-  state.selectedTime     = null;
+  state.selectedService = service;
+  state.previousSection = fromSection || state.currentSection;
+  state.selectedDate    = null;
+  state.selectedDateKey = null;
+  state.selectedTime    = null;
 
   // Update the subtitle in the booking section header
   const label = document.getElementById('booking-service-label');
@@ -113,9 +120,9 @@ function resetBookingUI() {
   setEl('timeslots-heading', 'Select a date to view available times');
   clearEl('timeslots-grid');
 
-  const confirmForm    = document.getElementById('confirm-form');
+  const confirmForm = document.getElementById('confirm-form');
   const bookingSuccess = document.getElementById('booking-success');
-  if (confirmForm)    confirmForm.hidden = true;
+  if (confirmForm) confirmForm.hidden = true;
   if (bookingSuccess) bookingSuccess.hidden = true;
 
   // Clear form fields
@@ -130,7 +137,7 @@ function resetBookingUI() {
  * Validates the form, shows the success screen, and is the
  * integration point for the Google Calendar API event creation.
  */
-function submitBooking() {
+async function submitBooking() {
   const name  = document.getElementById('field-name')?.value.trim();
   const email = document.getElementById('field-email')?.value.trim();
   const phone = document.getElementById('field-phone')?.value.trim();
@@ -145,47 +152,50 @@ function submitBooking() {
     return;
   }
 
-  /*
-   * GOOGLE CALENDAR INTEGRATION — Step 2:
-   * Create a calendar event via the Google Calendar REST API.
-   *
-   *   const eventBody = {
-   *     summary:     `${state.selectedService} — ${name}`,
-   *     description: notes || '',
-   *     start: { dateTime: buildISODateTime(state.selectedDate, state.selectedTime),
-   *              timeZone: 'America/Toronto' },          // ← set your timezone
-   *     end:   { dateTime: buildISODateTime(state.selectedDate, state.selectedTime, 60),
-   *              timeZone: 'America/Toronto' },
-   *     attendees: [{ email }],
-   *   };
-   *
-   *   fetch(`https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`, {
-   *     method:  'POST',
-   *     headers: {
-   *       'Content-Type':  'application/json',
-   *       'Authorization': `Bearer ${googleAccessToken}`,  // from OAuth 2.0
-   *     },
-   *     body: JSON.stringify(eventBody),
-   *   })
-   *   .then(r => r.json())
-   *   .then(data => {
-   *     if (data.id) { showSuccessScreen(name, email); }
-   *     else         { showFormError('Unable to create booking. Please try again.'); }
-   *   })
-   *   .catch(() => showFormError('Network error. Please try again.'));
-   *
-   * For now we skip the API call and show the success screen immediately:
-   */
-  showSuccessScreen(name, email);
+  // If Apps Script is not configured, show success without the API call.
+  if (!APPS_SCRIPT_URL) {
+    showSuccessScreen(name, email);
+    return;
+  }
+
+  const confirmBtn = document.querySelector('.confirm-btn');
+  if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = 'Booking…'; }
+
+  try {
+    // Send as text/plain to avoid a CORS preflight — Apps Script reads the
+    // raw body via e.postData.contents and parses it as JSON on its end.
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      body:    JSON.stringify({
+        service:     state.selectedService,
+        dateKey:     state.selectedDateKey,
+        displayDate: state.selectedDate,
+        time:        state.selectedTime,
+        name, email, phone, notes,
+      }),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      showSuccessScreen(name, email);
+    } else {
+      showFormError(json.error || 'Unable to complete booking. Please try again.');
+    }
+  } catch {
+    showFormError('Network error. Please check your connection and try again.');
+  } finally {
+    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = 'Confirm Appointment'; }
+  }
 }
 
 /** Render the success state after a confirmed booking. */
 function showSuccessScreen(name, email) {
-  const confirmForm    = document.getElementById('confirm-form');
+  const confirmForm = document.getElementById('confirm-form');
   const bookingSuccess = document.getElementById('booking-success');
   const successDetails = document.getElementById('success-details');
 
-  if (confirmForm)    confirmForm.hidden = true;
+  if (confirmForm) confirmForm.hidden = true;
   if (bookingSuccess) bookingSuccess.hidden = false;
 
   if (successDetails) {
@@ -215,17 +225,17 @@ function isValidEmail(email) {
 
 // ── General inquiry form ─────────────────────────────────────
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgobyevg';
 
 async function submitInquiry(event) {
   event.preventDefault();
 
-  const name    = document.getElementById('inq-name')?.value.trim();
-  const email   = document.getElementById('inq-email')?.value.trim();
-  const phone   = document.getElementById('inq-phone')?.value.trim();
+  const name = document.getElementById('inq-name')?.value.trim();
+  const email = document.getElementById('inq-email')?.value.trim();
+  const phone = document.getElementById('inq-phone')?.value.trim();
   const message = document.getElementById('inq-message')?.value.trim();
-  const errEl   = document.getElementById('inq-error');
-  const btn     = event.target.querySelector('button[type="submit"]');
+  const errEl = document.getElementById('inq-error');
+  const btn = event.target.querySelector('button[type="submit"]');
 
   const showErr = (msg) => {
     if (errEl) { errEl.textContent = msg; errEl.hidden = false; }
@@ -252,7 +262,7 @@ async function submitInquiry(event) {
     });
 
     if (res.ok) {
-      document.getElementById('inquiry-form').hidden    = true;
+      document.getElementById('inquiry-form').hidden = true;
       document.getElementById('inquiry-success').hidden = false;
     } else {
       const data = await res.json().catch(() => ({}));

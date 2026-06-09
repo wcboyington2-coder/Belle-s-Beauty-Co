@@ -134,6 +134,32 @@ function initCalendar(externalBusyMap) {
 
   renderCalendar(calYear, calMonth);
   wireCalendarNav();
+
+  // Fetch real availability; re-renders the calendar grid when data arrives.
+  fetchBusyData(calYear, calMonth);
+}
+
+/**
+ * Load free/busy data from the Apps Script web app for the given month.
+ * Falls back silently to sample data if the URL is not configured.
+ */
+async function fetchBusyData(year, month) {
+  if (typeof APPS_SCRIPT_URL === 'undefined' || !APPS_SCRIPT_URL) return;
+
+  const timeMin = new Date(year, month, 1).toISOString();
+  const timeMax = new Date(year, month + 1, 1).toISOString();
+
+  try {
+    const res  = await fetch(`${APPS_SCRIPT_URL}?timeMin=${timeMin}&timeMax=${timeMax}`);
+    const json = await res.json();
+
+    if (json.busy) {
+      busyMap = buildBusyMap(json.busy);
+      renderCalendar(year, month);
+    }
+  } catch (err) {
+    console.warn('Could not load availability from Google Calendar:', err);
+  }
 }
 
 
@@ -221,17 +247,11 @@ function wireCalendarNav() {
   if (prevBtn) {
     prevBtn.onclick = () => {
       const today = new Date();
-      // Don't navigate before the current month
       if (calYear > today.getFullYear() || calMonth > today.getMonth()) {
         calMonth--;
         if (calMonth < 0) { calMonth = 11; calYear--; }
         renderCalendar(calYear, calMonth);
-
-        /*
-         * GOOGLE CALENDAR INTEGRATION:
-         * After changing the month, re-fetch freebusy data for the new
-         * visible range and call renderCalendar() again with updated busyMap.
-         */
+        fetchBusyData(calYear, calMonth);
       }
     };
   }
@@ -241,11 +261,7 @@ function wireCalendarNav() {
       calMonth++;
       if (calMonth > 11) { calMonth = 0; calYear++; }
       renderCalendar(calYear, calMonth);
-
-      /*
-       * GOOGLE CALENDAR INTEGRATION:
-       * Same as above — re-fetch for the newly visible month.
-       */
+      fetchBusyData(calYear, calMonth);
     };
   }
 }
@@ -261,8 +277,9 @@ function selectDate(dateKey, clickedEl) {
   // Mark new selection
   if (clickedEl) clickedEl.classList.add('selected');
 
-  state.selectedDate = formatDisplayDate(dateKey);
-  state.selectedTime = null;
+  state.selectedDate    = formatDisplayDate(dateKey);
+  state.selectedDateKey = dateKey;
+  state.selectedTime    = null;
 
   renderTimeSlots(dateKey);
 }
@@ -391,13 +408,11 @@ function formatDisplayDate(dateKey) {
     .toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-/*
- * GOOGLE CALENDAR INTEGRATION — Helper:
- * Converts a freebusy API response into the busyMap format used by this module.
- *
- * @param {Array} busyRanges - Array of { start: ISOString, end: ISOString }
- * @returns {Object} - { "YYYY-MM-DD": ["9:00 AM", "9:30 AM", ...], ... }
- *
+/**
+ * Convert a freebusy response (array of {start, end} ISO strings) into the
+ * busyMap format used by this module: { "YYYY-MM-DD": ["9:00 AM", ...] }.
+ * Each event's occupied 30-min slots are marked for the event's start date.
+ */
 function buildBusyMap(busyRanges) {
   const map = {};
   busyRanges.forEach(({ start, end }) => {
@@ -414,16 +429,8 @@ function buildBusyMap(busyRanges) {
   });
   return map;
 }
-*/
 
-/*
- * GOOGLE CALENDAR INTEGRATION — Helper:
- * Build a Date for a time-slot string on a given date.
- *
- * @param {string} slot   - e.g. "2:30 PM"
- * @param {Date}   onDate - Reference date (year/month/day used)
- * @returns {Date}
- *
+/** Build a Date for a time-slot string on a given reference date. */
 function parseSlotTime(slot, onDate) {
   const [time, meridiem] = slot.split(' ');
   let [hours, minutes] = time.split(':').map(Number);
@@ -431,4 +438,3 @@ function parseSlotTime(slot, onDate) {
   if (meridiem === 'AM' && hours === 12) hours = 0;
   return new Date(onDate.getFullYear(), onDate.getMonth(), onDate.getDate(), hours, minutes);
 }
-*/
