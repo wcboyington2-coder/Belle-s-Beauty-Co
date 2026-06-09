@@ -39,6 +39,10 @@ const SERVICE_DURATIONS = {
 
 // ── GET — return busy ranges for a date range ─────────────────────────────────
 function doGet(e) {
+  if (!e || !e.parameter) {
+    return jsonResponse({ error: 'No parameters received' });
+  }
+
   const timeMin = e.parameter.timeMin;
   const timeMax = e.parameter.timeMax;
 
@@ -47,7 +51,11 @@ function doGet(e) {
   }
 
   try {
-    const cal    = CalendarApp.getCalendarById(CALENDAR_ID);
+    const cal = CalendarApp.getCalendarById(CALENDAR_ID);
+    if (!cal) {
+      return jsonResponse({ error: 'Calendar not found: ' + CALENDAR_ID });
+    }
+
     const events = cal.getEvents(new Date(timeMin), new Date(timeMax));
 
     const busy = events.map(function(ev) {
@@ -85,7 +93,10 @@ function doPost(e) {
     var endDT        = new Date(startDT.getTime() + durationMins * 60 * 1000);
 
     // Create the calendar event
-    var cal   = CalendarApp.getCalendarById(CALENDAR_ID);
+    var cal = CalendarApp.getCalendarById(CALENDAR_ID);
+    if (!cal) {
+      return jsonResponse({ success: false, error: 'Calendar not found: ' + CALENDAR_ID + '. Make sure the script is authorized and the calendar ID is correct.' });
+    }
     var event = cal.createEvent(
       service + ' — ' + name,
       startDT,

@@ -7,7 +7,7 @@
 // ── Google Apps Script URL ────────────────────────────────────
 // Paste your Web App URL here after deploying google-apps-script/Code.gs.
 // Leave as empty string to use sample data during development.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgVarEAkBJ1iYSyxKnKq99w7aetqdBpM1m6b8rFW8CHXo9IqHHuQkXmPDYJMsOMybZ/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvuzTZ_akJd74eXh9DPNTGtv93M4jLEXeK1Ra4b7vVgZG0FpEuQZQrZJICgvoM4gn7/exec';
 
 // ── State ────────────────────────────────────────────────────
 const state = {
@@ -62,13 +62,6 @@ function showBooking(service, fromSection) {
   resetBookingUI();
 
   showSection('booking');
-
-  /*
-   * GOOGLE CALENDAR INTEGRATION — Step 1:
-   * Before (or right after) showing the calendar, fetch availability from the API.
-   * Call initCalendar() with the fetched busy-time data once the OAuth token is ready.
-   * For now, initCalendar() uses static sample data from calendar.js.
-   */
   initCalendar();
 }
 
@@ -134,10 +127,11 @@ function resetBookingUI() {
 
 /**
  * Handle the "Confirm Appointment" button.
- * Validates the form, shows the success screen, and is the
- * integration point for the Google Calendar API event creation.
+ * Validates the form, shows the success screen, and posts to Google Apps Script.
  */
 async function submitBooking() {
+  clearFormError();
+
   const name = document.getElementById('field-name')?.value.trim();
   const email = document.getElementById('field-email')?.value.trim();
   const phone = document.getElementById('field-phone')?.value.trim();
@@ -182,8 +176,9 @@ async function submitBooking() {
     } else {
       showFormError(json.error || 'Unable to complete booking. Please try again.');
     }
-  } catch {
-    showFormError('Network error. Please check your connection and try again.');
+  } catch (err) {
+    showFormError('Network error — could not reach the booking server. Please try again.');
+    console.error('Booking fetch error:', err);
   } finally {
     if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = 'Confirm Appointment'; }
   }
@@ -205,17 +200,22 @@ function showSuccessScreen(name, email) {
   }
 }
 
-/** Show a validation error message inside the form. */
+/** Show a validation/network error inside the booking form. Stays visible until cleared. */
 function showFormError(message) {
   let err = document.getElementById('form-error');
   if (!err) {
     err = document.createElement('p');
     err.id = 'form-error';
-    err.style.cssText = 'font-size:.8rem;color:#b84040;margin-bottom:.75rem;';
+    err.style.cssText =
+      'font-size:.85rem;color:#b84040;margin-bottom:.75rem;' +
+      'padding:.5rem .75rem;background:#fdf4f4;border:1px solid #f0c0c0;border-radius:6px;';
     document.querySelector('.confirm-btn')?.before(err);
   }
   err.textContent = message;
-  setTimeout(() => err.remove(), 4000);
+}
+
+function clearFormError() {
+  document.getElementById('form-error')?.remove();
 }
 
 function isValidEmail(email) {
