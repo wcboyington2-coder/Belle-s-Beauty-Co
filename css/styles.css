@@ -764,13 +764,13 @@ main { padding-top: var(--header-h); min-height: 100vh; }
 .about-layout {
   display: flex;
   gap: 3rem;
-  align-items: flex-start;
+  align-items: stretch;
 }
-.about-logo-col { flex-shrink: 0; }
+.about-logo-col { flex-shrink: 0; display: flex; }
 .about-logo { width: 180px; height: auto; opacity: 0.85; }
 .about-photo {
   width: 260px;
-  height: 320px;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
   border-radius: var(--r-md);
