@@ -109,8 +109,6 @@ function doPost(e) {
           'Phone:   ' + phone,
           'Notes:   ' + notes,
         ].join('\n'),
-        guests:      email,
-        sendInvites: true,
       }
     );
 
