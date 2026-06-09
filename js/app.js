@@ -7,7 +7,7 @@
 // ── Google Apps Script URL ────────────────────────────────────
 // Paste your Web App URL here after deploying google-apps-script/Code.gs.
 // Leave as empty string to use sample data during development.
-const APPS_SCRIPT_URL = '';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvuzTZ_akJd74eXh9DPNTGtv93M4jLEXeK1Ra4b7vVgZG0FpEuQZQrZJICgvoM4gn7/exec';
 
 // ── State ────────────────────────────────────────────────────
 const state = {
@@ -50,9 +50,9 @@ function showServiceSection(category) {
 function showBooking(service, fromSection) {
   state.selectedService = service;
   state.previousSection = fromSection || state.currentSection;
-  state.selectedDate    = null;
+  state.selectedDate = null;
   state.selectedDateKey = null;
-  state.selectedTime    = null;
+  state.selectedTime = null;
 
   // Update the subtitle in the booking section header
   const label = document.getElementById('booking-service-label');
@@ -138,7 +138,7 @@ function resetBookingUI() {
  * integration point for the Google Calendar API event creation.
  */
 async function submitBooking() {
-  const name  = document.getElementById('field-name')?.value.trim();
+  const name = document.getElementById('field-name')?.value.trim();
   const email = document.getElementById('field-email')?.value.trim();
   const phone = document.getElementById('field-phone')?.value.trim();
   const notes = document.getElementById('field-notes')?.value.trim();
@@ -165,12 +165,12 @@ async function submitBooking() {
     // Send as text/plain to avoid a CORS preflight — Apps Script reads the
     // raw body via e.postData.contents and parses it as JSON on its end.
     const res = await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      body:    JSON.stringify({
-        service:     state.selectedService,
-        dateKey:     state.selectedDateKey,
+      method: 'POST',
+      body: JSON.stringify({
+        service: state.selectedService,
+        dateKey: state.selectedDateKey,
         displayDate: state.selectedDate,
-        time:        state.selectedTime,
+        time: state.selectedTime,
         name, email, phone, notes,
       }),
     });
