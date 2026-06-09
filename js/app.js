@@ -152,7 +152,7 @@ async function submitBooking() {
     return;
   }
 
-  const confirmBtn = document.querySelector('.confirm-btn');
+  const confirmBtn = document.querySelector('#confirm-form .confirm-btn');
   if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = 'Booking…'; }
 
   try {
@@ -209,7 +209,7 @@ function showFormError(message) {
     err.style.cssText =
       'font-size:.85rem;color:#b84040;margin-bottom:.75rem;' +
       'padding:.5rem .75rem;background:#fdf4f4;border:1px solid #f0c0c0;border-radius:6px;';
-    document.querySelector('.confirm-btn')?.before(err);
+    document.querySelector('#confirm-form .confirm-btn')?.before(err);
   }
   err.textContent = message;
 }
