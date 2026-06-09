@@ -2,22 +2,25 @@
    Belle's Beauty & Co. — Calendar & Time-Slot Module
    ============================================================
 
-   HOW GOOGLE CALENDAR INTEGRATION WORKS (future):
-   ─────────────────────────────────────────────────
-   1. Authenticate: use Google Identity Services (GIS) to get
-      an OAuth 2.0 access token with the
-      "https://www.googleapis.com/auth/calendar.events" scope.
+   HOW GOOGLE CALENDAR INTEGRATION WORKS:
+   ───────────────────────────────────────
+   1. On load, fetchBusyData() calls the Apps Script web app
+      (APPS_SCRIPT_URL in app.js) with timeMin / timeMax for
+      the visible month.
 
-   2. Fetch busy times for the visible month:
-        POST https://www.googleapis.com/calendar/v3/freeBusy
-        { timeMin, timeMax, items: [{ id: CALENDAR_ID }] }
-      Response gives you an array of { start, end } busy ranges.
+   2. The script returns an array of { start, end } busy ranges
+      from the owner's Google Calendar.
 
-   3. Pass those ranges to buildBusyMap(busyRanges) below to
-      produce the same data structure as SAMPLE_BOOKED_SLOTS.
+   3. buildBusyMap() converts those ranges into the busyMap
+      format: { "YYYY-MM-DD": ["9:00 AM", "9:30 AM", ...] }.
 
-   4. Call initCalendar(busyMap) — the calendar will show
-      available/unavailable days automatically.
+   4. renderCalendar() re-renders with real availability data.
+      On month navigation, fetchBusyData() is called again.
+
+   5. When a customer confirms a booking, submitBooking() in
+      app.js POSTs the details to the same Apps Script URL,
+      which creates a Google Calendar event and emails both
+      the owner and the customer.
 
    ============================================================ */
 
