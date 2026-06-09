@@ -16,8 +16,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Config — fill these in before deploying ──────────────────────────────────
-const CALENDAR_ID = 'YOUR_CALENDAR_ID';       // e.g. 'annabellecfry2002@gmail.com'
-const OWNER_EMAIL = 'YOUR_EMAIL@gmail.com';   // booking notifications go here
+const CALENDAR_ID = 'annabellecfry2002@gmail.com';
+const OWNER_EMAIL = 'annabellecfry2002@gmail.com';
 const SALON_NAME  = "Belle's Beauty & Co.";
 // IMPORTANT: set the script's timezone in Apps Script → Project Settings → Time zone.
 // It must match your salon's local timezone so events are created at the right time.
