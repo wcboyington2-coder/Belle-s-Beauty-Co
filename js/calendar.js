@@ -421,14 +421,21 @@ function buildBusyMap(busyRanges) {
   busyRanges.forEach(({ start, end }) => {
     const startDate = new Date(start);
     const endDate   = new Date(end);
-    ALL_TIME_SLOTS.forEach(slot => {
-      const slotTime = parseSlotTime(slot, startDate);
-      if (slotTime >= startDate && slotTime < endDate) {
-        const key = toDateKey(startDate);
-        if (!map[key]) map[key] = [];
-        if (!map[key].includes(slot)) map[key].push(slot);
-      }
-    });
+
+    // Walk day by day so multi-day events (e.g. an all-day "Blocked" spanning
+    // a week) correctly mark every day in the range, not just the first day.
+    const cursor = startOfDay(new Date(startDate));
+    while (cursor < endDate) {
+      const dateKey = toDateKey(cursor);
+      ALL_TIME_SLOTS.forEach(slot => {
+        const slotTime = parseSlotTime(slot, cursor);
+        if (slotTime >= startDate && slotTime < endDate) {
+          if (!map[dateKey]) map[dateKey] = [];
+          if (!map[dateKey].includes(slot)) map[dateKey].push(slot);
+        }
+      });
+      cursor.setDate(cursor.getDate() + 1);
+    }
   });
   return map;
 }
