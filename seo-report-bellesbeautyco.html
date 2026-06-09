@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Report — Belle's Beauty &amp; Co.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --orange: #f97316;
+    --orange-bg: rgba(249,115,22,0.12);
+    --orange-border: rgba(249,115,22,0.25);
+    --purple: #a78bfa;
+    --purple-bg: rgba(167,139,250,0.08);
+    --purple-border: rgba(167,139,250,0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: ambientDrift 20s ease-in-out infinite;
+  }
+  @keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -1%); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .header {
+    padding: 40px 0 0;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .header-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .score-section {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+  }
+  .score-circle-wrap { position: relative; flex-shrink: 0; }
+  .score-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  .score-circle svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .score-circle svg circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+  .score-circle svg .bg-ring { stroke: rgba(255,255,255,0.06); }
+  .score-circle svg .progress-ring {
+    stroke: var(--red);
+    stroke-dasharray: 502;
+    stroke-dashoffset: 351;
+    filter: drop-shadow(0 0 6px rgba(239,68,68,0.3));
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+  .score-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  .score-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+  }
+  .score-grade {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    margin-top: 2px;
+  }
+  .score-details { flex: 1; }
+  .score-details h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .score-details p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .sub-scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .sub-score {
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .sub-score-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .sub-score-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .sub-score-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .sub-score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease-out;
+  }
+
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .tabs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text-secondary); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab-btn .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    color: var(--text-secondary);
+  }
+  .tab-btn.active .tab-count {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .tab-content { display: none; padding: 40px 0 80px; }
+  .tab-content.active { display: block; }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-subtitle { color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-hover); }
+  .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: var(--text-secondary); }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-critical { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-high { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-medium { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-low { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-pass { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-warning { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-fail { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  .finding {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding-status {
+    width: 8px; height: 8px; border-radius: 50%; margin-top: 8px;
+  }
+  .finding-status.pass { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+  .finding-status.warning { background: var(--yellow); box-shadow: 0 0 6px rgba(234,179,8,0.4); }
+  .finding-status.fail { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+  .finding-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .finding-content p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .finding-rec {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(99,102,241,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .collapsible {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .collapsible:hover { border-color: var(--border-hover); }
+  .collapsible-header {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .collapsible-header:hover { background: rgba(255,255,255,0.02); }
+  .collapsible-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .collapsible-body { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .collapsible.open .collapsible-body { max-height: 5000px; }
+  .collapsible-body-inner { padding: 0 24px 24px; }
+  .collapse-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--text-muted);
+    transition: transform 0.3s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .collapsible.open .collapse-icon { transform: rotate(180deg); }
+
+  .page-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .page-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .page-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: top;
+  }
+  .page-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .page-url { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); word-break: break-all; }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px; height: 22px; border-radius: 6px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; margin-top: 1px;
+  }
+  .check-icon.pass { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .check-icon.fail { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .check-icon.warn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .check-text { font-size: 14px; color: var(--text); }
+  .check-text.muted { color: var(--text-secondary); }
+
+  .action-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .action-item:hover { border-color: var(--border-hover); }
+  .action-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--accent); flex-shrink: 0;
+    width: 36px; text-align: center; opacity: 0.5;
+  }
+  .action-content { flex: 1; }
+  .action-title { font-weight: 600; color: var(--text); font-size: 15px; margin-bottom: 6px; }
+  .action-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .action-impact { margin-top: 8px; font-size: 13px; color: var(--green); font-weight: 500; }
+
+  .cluster {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .cluster-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; color: var(--purple); font-size: 16px; margin-bottom: 12px;
+  }
+  .cluster-pages { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cluster-page {
+    padding: 6px 14px; border-radius: 100px;
+    background: var(--purple-bg); border: 1px solid var(--purple-border);
+    font-size: 13px; font-family: 'JetBrains Mono', monospace; color: var(--text-secondary);
+  }
+  .cluster-page.pillar {
+    background: rgba(167,139,250,0.15);
+    border-color: rgba(167,139,250,0.3);
+    color: var(--purple); font-weight: 600;
+  }
+
+  .lsi-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 4px;
+  }
+  .lsi-present { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .lsi-missing { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); opacity: 0.7; }
+
+  .alert-box {
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .alert-critical { background: var(--red-bg); border: 1px solid var(--red-border); color: #fca5a5; }
+  .alert-high { background: var(--orange-bg); border: 1px solid var(--orange-border); color: #fdba74; }
+  .alert-info { background: var(--blue-bg); border: 1px solid rgba(59,130,246,0.25); color: #93c5fd; }
+
+  @media (max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .score-section { flex-direction: column; text-align: center; padding: 24px; gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .sub-scores { grid-template-columns: repeat(2, 1fr); }
+    .action-item { flex-direction: column; gap: 12px; }
+  }
+  @media print {
+    .tabs { display: none; }
+    .tab-content { display: block !important; page-break-before: always; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="header-badge"><span class="dot"></span> Site-Wide SEO Audit</div>
+    <h1>Belle's Beauty &amp; Co.</h1>
+    <p class="subtitle">Comprehensive analysis · 1 HTML file (6 virtual sections) · Generated June 8, 2026</p>
+  </div>
+</div>
+
+<!-- Score Overview -->
+<div class="container" style="padding-top: 0; padding-bottom: 32px;">
+  <div class="score-section">
+    <div class="score-circle-wrap">
+      <div class="score-circle">
+        <svg viewBox="0 0 160 160">
+          <circle class="bg-ring" cx="80" cy="80" r="74"/>
+          <circle class="progress-ring" cx="80" cy="80" r="74"/>
+        </svg>
+        <span class="score-number">30</span>
+        <span class="score-grade">Grade F</span>
+        <span class="score-label">Overall Health</span>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Critical SEO Issues — Immediate Action Required</h2>
+      <p>Belle's Beauty &amp; Co. has a strong visual foundation but is nearly invisible to Google. The site scores 30/100 due to missing local SEO signals, no structured data, no social meta tags, a single-page architecture that prevents individual service sections from being indexed, and missing infrastructure files (robots.txt, sitemap.xml). Without fixing these issues, the salon will not appear in local searches for "beauty salon Union MS," "nail salon Union Mississippi," or any service-level queries.</p>
+      <div class="sub-scores">
+        <div class="sub-score">
+          <div class="sub-score-label">Technical</div>
+          <div class="sub-score-value" style="color:#ef4444">20</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:20%;background:#ef4444"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Content</div>
+          <div class="sub-score-value" style="color:#eab308">40</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:40%;background:#eab308"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Architecture</div>
+          <div class="sub-score-value" style="color:#ef4444">28</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:28%;background:#ef4444"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Cross-Page</div>
+          <div class="sub-score-value" style="color:#eab308">65</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:65%;background:#eab308"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Social &amp; Schema</div>
+          <div class="sub-score-value" style="color:#ef4444">0</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:0%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('executive', this)">Executive Summary</button>
+    <button class="tab-btn" onclick="switchTab('pages', this)">Page Breakdown <span class="tab-count">1</span></button>
+    <button class="tab-btn" onclick="switchTab('sitewide', this)">Site-Wide Issues <span class="tab-count">12</span></button>
+    <button class="tab-btn" onclick="switchTab('technical', this)">Technical</button>
+    <button class="tab-btn" onclick="switchTab('content', this)">Content Strategy</button>
+    <button class="tab-btn" onclick="switchTab('linking', this)">Internal Linking</button>
+    <button class="tab-btn" onclick="switchTab('actions', this)">Action Plan</button>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: EXECUTIVE SUMMARY ==================== -->
+<div id="tab-executive" class="tab-content active">
+<div class="container">
+
+  <div class="section-title">Executive Summary</div>
+  <div class="section-subtitle">High-level overview of Belle's Beauty &amp; Co.'s SEO health and top priorities</div>
+
+  <div class="alert-box alert-critical">
+    <strong>&#9888; Single-Page Architecture Warning:</strong> The entire website is one HTML file using JavaScript to show/hide sections. Google sees all content simultaneously under one URL. The service sections (Hair, Nails, Special Events, About) cannot be individually indexed or ranked. This is the most impactful architectural issue to address.
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-label">HTML Files (6 Sections)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">7</div>
+      <div class="stat-label">Critical Issues</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--orange)">5</div>
+      <div class="stat-label">High Priority</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--yellow)">4</div>
+      <div class="stat-label">Warnings</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~620</div>
+      <div class="stat-label">Total Word Count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">0%</div>
+      <div class="stat-label">Schema Coverage</div>
+    </div>
+  </div>
+
+  <!-- Key Findings -->
+  <div class="card" style="margin-bottom: 24px;">
+    <div class="card-title" style="margin-bottom: 16px;">Key Findings</div>
+    <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.8;">
+      Belle's Beauty &amp; Co. has zero location keywords anywhere in the title tag, H1, or meta description — a business in Union, Mississippi that never mentions "Union," "MS," or "Mississippi" cannot rank for local search queries like "beauty salon Union MS." The site is built as a JavaScript SPA with a single HTML file, meaning Google indexes one URL with ~620 words and five hidden service sections it may or may not read. There is no structured data of any kind (no LocalBusiness schema, no Service schema, no Review schema), no Open Graph tags for social sharing, no favicon, no canonical tag, no robots.txt, and no sitemap.xml. The main landing section has no H1 tag, and there are five H1 tags in the hidden JS sections — all of which Google sees simultaneously. The About page and Gallery section are filled with placeholder "coming soon" text, providing zero content value. Phone number is absent from the entire HTML document, which hurts both local SEO and user experience.
+    </div>
+  </div>
+
+  <!-- Top 3 Priorities -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Top 3 Priorities</div>
+  <div class="section-subtitle">The highest-impact actions to take right now</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Add location to title tag, H1, and meta description</div>
+      <div class="action-desc">The title should be: <strong>"Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup Salon — Union, MS"</strong>. The meta description should mention "Union, Mississippi" and include a call to action. The landing H1 should become something like "Union Mississippi's Premier Beauty Salon." These three changes alone will immediately signal local relevance to Google.</div>
+      <div class="action-impact">&#10003; Expected impact: Enables ranking for "beauty salon Union MS," "nail salon Union Mississippi," and all local service queries. Without this, the site cannot appear for any location-based search.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Add LocalBusiness structured data schema</div>
+      <div class="action-desc">Add a <code style="background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-family:monospace">LocalBusiness</code> JSON-LD schema block to the &lt;head&gt; of index.html with name, address (25025 Highway 15, Union, MS 39365), phone number, opening hours, services offered, and geographic coordinates. This feeds Google Maps, the local 3-pack, and the knowledge panel. Without it, Google must guess your business details.</div>
+      <div class="action-impact">&#10003; Expected impact: Enables Google Maps visibility, local 3-pack inclusion, and rich results. Highest ROI fix for a local business.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Add Open Graph meta tags, Twitter Card tags, and a favicon</div>
+      <div class="action-desc">Add og:title, og:description, og:image, og:url, og:type, and twitter:card tags to the &lt;head&gt;. Also add a &lt;link rel="icon"&gt; for the favicon. These are currently completely absent — every link shared to Facebook, Instagram DMs, iMessage, etc. will show a blank preview, damaging brand credibility. Takes under 30 minutes to implement.</div>
+      <div class="action-impact">&#10003; Expected impact: Improves click-through rate from social sharing and Google search results. Signals to Google that the site is professionally maintained.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 2: PAGE-BY-PAGE BREAKDOWN ==================== -->
+<div id="tab-pages" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Page-by-Page Breakdown</div>
+  <div class="section-subtitle">index.html contains 6 JavaScript-controlled sections — analyzed individually below</div>
+
+  <div class="alert-box alert-info">
+    <strong>Note:</strong> Because this is a single-page app, Google indexes everything at one URL. The per-section analysis below shows what content exists in the HTML source, but each section cannot rank for its own keywords as a distinct page.
+  </div>
+
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Title Tag</th>
+          <th>Est. Words</th>
+          <th>H1</th>
+          <th>Meta Desc</th>
+          <th>Schema</th>
+          <th>OG Tags</th>
+          <th>Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">#landing</span><br><small style="color:var(--text-muted)">Homepage (Active)</small></td>
+          <td style="max-width:180px">Belle's Beauty &amp; Co.<br><small style="color:var(--yellow)">22 chars — too short</small></td>
+          <td>~237</td>
+          <td><span class="badge badge-fail">Missing</span></td>
+          <td><span class="badge badge-warning">82 chars</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--red);font-weight:600">9</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#special-events</span><br><small style="color:var(--text-muted)">JS-hidden section</small></td>
+          <td style="color:var(--text-muted)">Shared title</td>
+          <td>~60</td>
+          <td><span class="badge badge-pass">Present</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--orange);font-weight:600">4</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#hair-makeup</span><br><small style="color:var(--text-muted)">JS-hidden section</small></td>
+          <td style="color:var(--text-muted)">Shared title</td>
+          <td>~80</td>
+          <td><span class="badge badge-pass">Present</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--orange);font-weight:600">3</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#nails</span><br><small style="color:var(--text-muted)">JS-hidden section</small></td>
+          <td style="color:var(--text-muted)">Shared title</td>
+          <td>~150</td>
+          <td><span class="badge badge-pass">Present</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--orange);font-weight:600">3</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#about</span><br><small style="color:var(--text-muted)">JS-hidden section</small></td>
+          <td style="color:var(--text-muted)">Shared title</td>
+          <td>~40</td>
+          <td><span class="badge badge-pass">Present</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--red);font-weight:600">5</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#gallery</span><br><small style="color:var(--text-muted)">Anchor on landing</small></td>
+          <td style="color:var(--text-muted)">Shared title</td>
+          <td>~10</td>
+          <td><span class="badge badge-pass">H2</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color:var(--red);font-weight:600">5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Landing Section Detail -->
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">#landing (Homepage — Active Section)</span>
+        <span class="badge badge-critical">9 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No H1 tag on the main visible section</h4>
+            <p>The landing page — what users and Google see first — has no H1 tag. The logo image, "Choose your service to begin" tagline, and service card titles (H2) appear instead. Google uses H1 as the primary on-page topic signal.</p>
+            <div class="finding-rec">Add an H1 like "Beauty Salon in Union, Mississippi — Hair, Nails &amp; Makeup" either visible on the page or visually hidden with CSS (clip-path technique) if you prefer to keep the current visual style.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Title tag has no keywords or location (22 characters)</h4>
+            <p>Current title: "Belle's Beauty &amp; Co." — contains only the brand name. Google truncates titles at ~60 characters; this wastes the remaining 38 characters and tells Google nothing about what the business does or where it is.</p>
+            <div class="finding-rec">Change to: "Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup Salon — Union, MS" (62 chars). This includes the brand, core services, and location.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Meta description is 82 characters and has no location</h4>
+            <p>Current: "Belle's Beauty &amp; Co. — Hair, Makeup &amp; Nail services. Book your appointment today." (82 chars). Target is 150–160 characters. No mention of "Union" or "Mississippi" means this cannot match local search intent.</p>
+            <div class="finding-rec">Expand to: "Belle's Beauty &amp; Co. is a full-service beauty salon in Union, Mississippi offering hair styling, gel nails, event makeup, and nail extensions. Book your appointment online today." (180 chars — trim slightly to fit).</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No canonical tag</h4>
+            <p>No &lt;link rel="canonical"&gt; tag found. Without this, if the site is accessible at multiple URLs (with/without www, HTTP/HTTPS, trailing slash), Google may index duplicates and split link equity.</p>
+            <div class="finding-rec">Add: &lt;link rel="canonical" href="https://yourdomain.com/" /&gt; once you have a live domain.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No Open Graph tags</h4>
+            <p>Completely absent. Every share of your URL to Facebook, Instagram DMs, iMessage, Slack, or WhatsApp will show a blank card with no image, no description, and often no title.</p>
+            <div class="finding-rec">Add og:title, og:description, og:image, og:url, og:type="website", og:site_name to &lt;head&gt;. Use your logo or a hero image for og:image (minimum 1200×630px).</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No Twitter Card tags</h4>
+            <p>Absent alongside OG tags. Twitter/X will not show a rich card preview when the URL is shared.</p>
+            <div class="finding-rec">Add twitter:card="summary_large_image", twitter:title, twitter:description, and twitter:image to &lt;head&gt;.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No favicon referenced in HTML</h4>
+            <p>No &lt;link rel="icon"&gt; tag. Browser tabs will show a blank icon. Google also uses favicon presence as a light signal of site quality.</p>
+            <div class="finding-rec">Export your logo as a 32×32 and 192×192 PNG, save as favicon.ico and favicon.png, and add &lt;link rel="icon" href="/favicon.ico"&gt; to &lt;head&gt;.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Phone number is not in the HTML</h4>
+            <p>The salon's phone number does not appear anywhere in the page. This hurts user experience (users can't call from mobile) and local SEO (Google uses NAP — Name, Address, Phone — consistency to verify local businesses).</p>
+            <div class="finding-rec">Add the phone number in the footer alongside the address, and include it in your LocalBusiness schema. Format as a tel: link: &lt;a href="tel:+16015551234"&gt;(601) 555-1234&lt;/a&gt;.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Images use PNG format with no lazy loading</h4>
+            <p>4 content images (headerlogo.png, logo.png, hair-makeup.png, nails.png) use PNG format and have no loading="lazy" attribute. Only the Google Maps iframe has lazy loading.</p>
+            <div class="finding-rec">Add loading="lazy" to all &lt;img&gt; tags below the fold. Convert images to WebP format for ~25-35% smaller file sizes.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section Detail -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">#about (Placeholder Content — No SEO Value)</span>
+        <span class="badge badge-critical">5 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>All content is placeholder text</h4>
+            <p>The About section contains "[Coming soon — fill in years &amp; story]", "[Coming soon — your story and mission]", and "[Coming soon — bio and credentials]". This provides zero content value and looks unprofessional if indexed.</p>
+            <div class="finding-rec">Write real About content: years in business, the stylist's name and credentials, your specialties, why clients choose Belle's over competitors. Even 150–200 words of real content is infinitely better than placeholders.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>H1 → H3 heading jump (no H2)</h4>
+            <p>The About section has an H1 ("About Belle's") but service names in other sections use H3 directly with no H2 intermediate — broken hierarchy.</p>
+            <div class="finding-rec">Add H2 subheadings within the About content (e.g., "Our Story," "Meet the Artist," "Our Services") to create logical hierarchy.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Section Detail -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">#gallery (Placeholder — "Coming Soon")</span>
+        <span class="badge badge-high">3 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Gallery is empty placeholder</h4>
+            <p>Six empty placeholder boxes with only "Gallery coming soon" text. This is thin content and a missed SEO opportunity — gallery images of your work with descriptive alt text are valuable for local image search.</p>
+            <div class="finding-rec">Upload real photos of your work. Name files descriptively (e.g., "gel-x-nails-union-ms.jpg") and write keyword-rich alt text for every image.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Gallery images will lack alt text when added</h4>
+            <p>No alt text infrastructure is set up for the gallery grid. When images are added, they must have descriptive alt text to rank in Google Images and contribute to on-page keyword signals.</p>
+            <div class="finding-rec">Add alt attributes to every gallery image describing the service shown and including local keywords where natural, e.g., alt="Gel X nail extensions with chrome finish — Belle's Beauty Union MS".</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 3: SITE-WIDE ISSUES ==================== -->
+<div id="tab-sitewide" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Site-Wide Issues</div>
+  <div class="section-subtitle">Cross-cutting issues that affect the entire website's search visibility</div>
+
+  <!-- SPA Architecture -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">&#9888; Critical: Single-Page App Architecture</div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>All service sections share one URL — cannot rank individually</h4>
+        <p>The website uses JavaScript to hide/show sections (Landing, Special Events, Hair, Nails, Nails, About, Booking). To Google's crawler, this is one page at one URL with all content present simultaneously. This means "Special Events" cannot rank separately from "Nail Services," which cannot rank separately from "Hair," etc. A user searching "gel nails Union MS" and a user searching "event makeup Union Mississippi" both land at the same undifferentiated URL.</p>
+        <div class="finding-rec"><strong>Long-term fix:</strong> Convert each service category to its own HTML page (special-events.html, hair.html, nails.html, about.html) with unique URLs, titles, H1s, and meta descriptions. <strong>Short-term fix (no rebuild required):</strong> Add URL hash navigation (#nails, #hair, #special-events) so Google can at least identify and link to specific sections, and use History API pushState to create distinct-feeling URLs.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>Five H1 tags coexist in the DOM simultaneously</h4>
+        <p>The HTML source contains H1 tags for: "Special Events," "Hair," "Nails," "Book an Appointment," and "About Belle's" — all present in the DOM at once, even though only one section is visible at a time. Google reads all H1s and may be confused about the page's primary topic. The landing section (the most important) has <em>no H1 at all</em>.</p>
+        <div class="finding-rec">Change the hidden section headings from H1 to H2 using JavaScript when those sections are hidden, or use CSS display:none on sections and ensure the landing section has a proper H1 tag. The simplest fix: add a visually hidden H1 to the landing section and downgrade the section headings to H2.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+  </div>
+
+  <!-- Duplicate Content & Cannibalization -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Duplicate Content &amp; Cannibalization</div>
+    <div class="finding">
+      <div class="finding-status pass"></div>
+      <div class="finding-content">
+        <h4>No duplicate title tags</h4>
+        <p>Only one title tag exists — the shared "Belle's Beauty &amp; Co." title applied to the whole SPA.</p>
+      </div>
+      <span class="badge badge-pass">Pass</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status pass"></div>
+      <div class="finding-content">
+        <h4>No duplicate meta descriptions</h4>
+        <p>One shared meta description across the entire SPA. No duplication risk, but missed opportunity for section-specific descriptions.</p>
+      </div>
+      <span class="badge badge-pass">Pass</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>Keyword cannibalization risk when site expands</h4>
+        <p>Currently all services share one URL, so there is no page-level cannibalization. However, when the site expands to multi-page, the "Hair" and "Special Events" pages could both target similar styling keywords if not properly differentiated.</p>
+        <div class="finding-rec">When building out individual pages, assign distinct primary keywords: Hair page → "hair salon Union MS," Special Events → "bridal hair &amp; makeup Union Mississippi," Nails → "nail salon Union MS / gel nails Union."</div>
+      </div>
+      <span class="badge badge-warning">Warning</span>
+    </div>
+  </div>
+
+  <!-- Robots.txt & Sitemap -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">robots.txt &amp; Sitemap</div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>robots.txt is missing</h4>
+        <p>No robots.txt file found in the project root. Without it, search engines have no explicit crawl instructions. When the site goes live, Google will attempt to access /robots.txt and receive a 404 error, which is a minor negative signal.</p>
+        <div class="finding-rec">Create a simple robots.txt in the project root:<br><code style="display:block;background:rgba(255,255,255,0.05);padding:10px;border-radius:6px;margin-top:8px;font-family:monospace;font-size:12px">User-agent: *<br>Allow: /<br>Sitemap: https://yourdomain.com/sitemap.xml</code></div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>sitemap.xml is missing</h4>
+        <p>No XML sitemap found. A sitemap tells Google which pages exist and when they were last updated. For a local business site, it accelerates indexing and ensures all pages are discovered.</p>
+        <div class="finding-rec">Create sitemap.xml once the site is deployed. For a single-page site:<br><code style="display:block;background:rgba(255,255,255,0.05);padding:10px;border-radius:6px;margin-top:8px;font-family:monospace;font-size:12px">&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;<br>&nbsp;&nbsp;&lt;url&gt;&lt;loc&gt;https://yourdomain.com/&lt;/loc&gt;&lt;lastmod&gt;2026-06-08&lt;/lastmod&gt;&lt;/url&gt;<br>&lt;/urlset&gt;</code>Submit via Google Search Console after deployment.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+  </div>
+
+  <!-- Local SEO -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Local SEO Signals</div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>Zero location keywords in title, H1, or meta description</h4>
+        <p>"Union," "Mississippi," and "MS" appear nowhere in the title tag, the H1, or the meta description. These are the three most heavily weighted on-page local SEO signals. The address does appear in the footer (good), but it has almost no weight compared to title/H1/meta.</p>
+        <div class="finding-rec">This is the #1 fix. Add "Union, MS" or "Union Mississippi" to the title, H1, and meta description as described in the Action Plan tab.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>Address present in footer but no phone number</h4>
+        <p>The address (25025 Highway 15, Union, MS 39365) is in the footer and the Google Maps embed — good. However, no phone number is present anywhere in the HTML. NAP (Name, Address, Phone) consistency across your website and Google Business Profile is a key local ranking factor.</p>
+        <div class="finding-rec">Add the phone number to the footer next to the address. Format as a clickable link: &lt;a href="tel:+1XXXXXXXXXX"&gt;(601) XXX-XXXX&lt;/a&gt;. Also ensure the same phone number appears on Google Business Profile and any other directories.</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>No business hours listed on the website</h4>
+        <p>Operating hours are not shown anywhere on the site. This hurts user experience and local SEO — Google uses hours data from websites and Google Business Profile to display "Open/Closed" in search results.</p>
+        <div class="finding-rec">Add hours to the footer or contact section, and include them in your LocalBusiness schema. Format: Mon–Fri 9am–6pm, Sat 9am–4pm (or whatever applies).</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>No LocalBusiness structured data (schema.org)</h4>
+        <p>Completely absent. This is the single most impactful technical fix for a local business. Schema tells Google your business name, address, phone, hours, services, and price range in a machine-readable format — directly powering Google Maps and the local 3-pack.</p>
+        <div class="finding-rec">See the Technical tab for the full schema code to add.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+  </div>
+
+  <!-- Security Headers -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Security &amp; Server Headers</div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>Cannot assess — site not yet deployed to a live server</h4>
+        <p>Security headers (HTTPS, HSTS, CSP, X-Frame-Options, etc.) cannot be evaluated from the local HTML file. These will need to be assessed once the site is deployed.</p>
+        <div class="finding-rec">After deployment, test security headers at <strong>securityheaders.com</strong>. At minimum, ensure HTTPS is enforced and HSTS is configured. Most modern static hosting providers (Netlify, Vercel, GitHub Pages) handle these automatically.</div>
+      </div>
+      <span class="badge badge-warning">Pending</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>HTTPS status unknown (local file)</h4>
+        <p>The site runs locally. Once deployed, HTTPS must be enabled — it is both a Google ranking factor and a security requirement. All HTTP traffic should redirect to HTTPS.</p>
+        <div class="finding-rec">When deploying, choose a host that provides free SSL certificates (Netlify, Vercel, or GitHub Pages all do this automatically). Confirm the URL in your canonical tag and schema uses https://.</div>
+      </div>
+      <span class="badge badge-warning">Check Post-Deploy</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 4: TECHNICAL ==================== -->
+<div id="tab-technical" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Technical SEO</div>
+  <div class="section-subtitle">Infrastructure, on-page signals, and implementation checklist</div>
+
+  <!-- Technical Checklist -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 20px;">Implementation Checklist</div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Viewport meta tag present (<code style="font-family:monospace;font-size:12px">width=device-width, initial-scale=1.0</code>)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Language declared on &lt;html&gt; element (<code style="font-family:monospace;font-size:12px">lang="en"</code>)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Google Fonts preconnect hints in &lt;head&gt; (&lt;link rel="preconnect"&gt; for fonts.googleapis.com and fonts.gstatic.com)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Charset declared (<code style="font-family:monospace;font-size:12px">UTF-8</code>)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">All 5 content images have alt text attributes</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Google Maps iframe has <code style="font-family:monospace;font-size:12px">loading="lazy"</code></div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">ARIA labels on interactive elements (nav, buttons, form fields)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">External links use <code style="font-family:monospace;font-size:12px">rel="noopener noreferrer"</code></div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No H1 on the landing section (the primary visible content)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No canonical tag (&lt;link rel="canonical"&gt;)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No favicon (&lt;link rel="icon"&gt;)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No Open Graph tags (og:title, og:description, og:image, og:url)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No Twitter Card meta tags</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No structured data / JSON-LD schema (LocalBusiness, Service, Review)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No robots.txt file</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">No sitemap.xml file</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Images use PNG format — WebP conversion recommended for ~30% smaller files</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">No loading="lazy" on content images (headerlogo, logo, hair-makeup, nails, specialevents)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Phone number absent from HTML — required for NAP consistency and local SEO</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Business hours not listed anywhere on the website</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">HTTPS, security headers — cannot assess until deployed (check via securityheaders.com)</div>
+    </div>
+  </div>
+
+  <!-- Schema Markup Strategy -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Schema Markup Strategy</div>
+  <div class="section-subtitle">Recommended JSON-LD structured data to add to &lt;head&gt;</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">&#10007; LocalBusiness Schema — Not Present (Critical)</div>
+    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px">Add this JSON-LD block to the &lt;head&gt; of index.html. Fill in the missing fields (phone, hours, website URL, coordinates).</p>
+    <pre style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#93c5fd;overflow-x:auto;line-height:1.6">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Belle's Beauty &amp; Co.",
+  "description": "Full-service beauty salon in Union, Mississippi offering hair styling, gel nails, nail extensions, and event makeup.",
+  "url": "https://YOUR-DOMAIN.com",
+  "telephone": "+1-601-XXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "25025 Highway 15",
+    "addressLocality": "Union",
+    "addressRegion": "MS",
+    "postalCode": "39365",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 32.5723,
+    "longitude": -89.1179
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Beauty Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gel X Nails", "description": "Gel X extensions with gel polish"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Event Makeup", "description": "Professional makeup for weddings and events"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hair Styling", "description": "Shampoo, blow dry and trim services"}}
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/share/1Wct53LKBZ/?mibextid=wwXIfr"
+  ]
+}
+&lt;/script&gt;</pre>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">&#10007; Open Graph + Twitter Card — Not Present (Critical)</div>
+    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px">Add this block to &lt;head&gt; after the existing meta tags. Replace YOUR-DOMAIN and update the image path once deployed.</p>
+    <pre style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#86efac;overflow-x:auto;line-height:1.6">&lt;!-- Open Graph --&gt;
+&lt;meta property="og:type"        content="website" /&gt;
+&lt;meta property="og:site_name"   content="Belle's Beauty &amp; Co." /&gt;
+&lt;meta property="og:url"         content="https://YOUR-DOMAIN.com/" /&gt;
+&lt;meta property="og:title"       content="Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup — Union, MS" /&gt;
+&lt;meta property="og:description" content="Full-service beauty salon in Union, Mississippi. Book hair styling, gel nails, nail extensions, and event makeup online." /&gt;
+&lt;meta property="og:image"       content="https://YOUR-DOMAIN.com/images/og-image.jpg" /&gt;
+&lt;meta property="og:image:width" content="1200" /&gt;
+&lt;meta property="og:image:height" content="630" /&gt;
+
+&lt;!-- Twitter Card --&gt;
+&lt;meta name="twitter:card"        content="summary_large_image" /&gt;
+&lt;meta name="twitter:title"       content="Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup — Union, MS" /&gt;
+&lt;meta name="twitter:description" content="Full-service beauty salon in Union, Mississippi. Book online." /&gt;
+&lt;meta name="twitter:image"       content="https://YOUR-DOMAIN.com/images/og-image.jpg" /&gt;
+
+&lt;!-- Favicon --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /&gt;
+&lt;link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" /&gt;
+&lt;link rel="apple-touch-icon" href="/favicon-192.png" /&gt;
+
+&lt;!-- Canonical --&gt;
+&lt;link rel="canonical" href="https://YOUR-DOMAIN.com/" /&gt;</pre>
+  </div>
+
+  <!-- Performance Indicators -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Performance Indicators</div>
+  <div class="section-subtitle">Resource counts and loading optimization</div>
+
+  <div class="card">
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>5 content images — none have lazy loading</h4>
+        <p>headerlogo.png, logo.png (×2), hair-makeup.png, nails.png, and specialevents.png are all loaded eagerly on page load. Only the Google Maps iframe has lazy loading.</p>
+        <div class="finding-rec">Add <code style="font-family:monospace">loading="lazy"</code> to all &lt;img&gt; tags that are not in the initial viewport (logo.png in footer, about section logo). The header logo should remain eager since it is above-the-fold.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>All images are PNG — WebP not used</h4>
+        <p>PNG is lossless and typically 2–3× larger than equivalent WebP images. Modern browsers universally support WebP. Converting would improve Core Web Vitals (LCP) and page speed scores.</p>
+        <div class="finding-rec">Convert logo.png, headerlogo.png, hair-makeup.png, nails.png, and specialevents.png to WebP. Use &lt;picture&gt; elements with WebP source and PNG fallback for maximum compatibility.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status pass"></div>
+      <div class="finding-content">
+        <h4>Font preconnect hints configured correctly</h4>
+        <p>Two &lt;link rel="preconnect"&gt; tags are present for fonts.googleapis.com and fonts.gstatic.com (with crossorigin), which reduces font load latency.</p>
+      </div>
+      <span class="badge badge-pass">Pass</span>
+    </div>
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>Google Fonts loaded with two full font families</h4>
+        <p>Playfair Display and Jost are both loaded from Google Fonts. Each font add a render-blocking request. Consider subsetting or using font-display: swap to prevent invisible text during load.</p>
+        <div class="finding-rec">Add <code style="font-family:monospace">&amp;display=swap</code> to the Google Fonts URL (already present — good). Consider using the system font stack as a fallback to prevent layout shift.</div>
+      </div>
+      <span class="badge badge-low">Low</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 5: CONTENT STRATEGY ==================== -->
+<div id="tab-content" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Content Strategy</div>
+  <div class="section-subtitle">Keyword opportunities, content gaps, and recommended content clusters for Union, MS</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">2</div>
+      <div class="stat-label">Thin Content Sections (&lt;50 words)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--yellow)">2</div>
+      <div class="stat-label">Placeholder Sections</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~620</div>
+      <div class="stat-label">Total Word Count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">0</div>
+      <div class="stat-label">Location Keywords in Title/H1</div>
+    </div>
+  </div>
+
+  <!-- Keyword Map -->
+  <div class="section-title" style="font-size: 18px;">Recommended Keyword Map</div>
+  <div class="section-subtitle">Target keywords per page/section — what each URL should rank for</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Page / Section</th>
+          <th>Target Keyword (Primary)</th>
+          <th>In Title?</th>
+          <th>In H1?</th>
+          <th>In First 100 Words?</th>
+          <th>Cannibalization Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">/ (Homepage)</span></td>
+          <td>beauty salon Union Mississippi</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No H1</span></td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/nails (recommended)</span></td>
+          <td>nail salon Union MS / gel nails Union Mississippi</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No keyword</span></td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/hair (recommended)</span></td>
+          <td>hair salon Union MS / blow dry Union Mississippi</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No keyword</span></td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/special-events (recommended)</span></td>
+          <td>bridal hair makeup Union Mississippi / event makeup artist MS</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No keyword</span></td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/about (recommended)</span></td>
+          <td>Belle's Beauty &amp; Co. Union MS / licensed cosmetologist Union Mississippi</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No keyword</span></td>
+          <td><span class="badge badge-fail">Placeholder only</span></td>
+          <td><span class="badge badge-low">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LSI Keywords -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">LSI &amp; Semantic Keyword Analysis</div>
+  <div class="section-subtitle">Terms that should appear across the site to build topical relevance</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px; color: var(--green)">&#10003; LSI Terms Present on Site</div>
+    <div style="margin-bottom: 8px;">
+      <span class="lsi-tag lsi-present">gel polish</span>
+      <span class="lsi-tag lsi-present">builder gel</span>
+      <span class="lsi-tag lsi-present">Gel X nails</span>
+      <span class="lsi-tag lsi-present">chrome finish</span>
+      <span class="lsi-tag lsi-present">blow dry</span>
+      <span class="lsi-tag lsi-present">hair trim</span>
+      <span class="lsi-tag lsi-present">event makeup</span>
+      <span class="lsi-tag lsi-present">event hair</span>
+      <span class="lsi-tag lsi-present">book appointment</span>
+      <span class="lsi-tag lsi-present">nail artistry</span>
+      <span class="lsi-tag lsi-present">shampoo</span>
+      <span class="lsi-tag lsi-present">natural nail</span>
+    </div>
+    <div class="card-title" style="margin-bottom: 12px; margin-top: 20px; color: var(--red)">&#10007; Critical LSI Terms Missing from Site</div>
+    <div>
+      <span class="lsi-tag lsi-missing">Union Mississippi</span>
+      <span class="lsi-tag lsi-missing">Union MS</span>
+      <span class="lsi-tag lsi-missing">Neshoba County</span>
+      <span class="lsi-tag lsi-missing">near me</span>
+      <span class="lsi-tag lsi-missing">Mississippi salon</span>
+      <span class="lsi-tag lsi-missing">licensed cosmetologist</span>
+      <span class="lsi-tag lsi-missing">nail extensions</span>
+      <span class="lsi-tag lsi-missing">bridal hair</span>
+      <span class="lsi-tag lsi-missing">wedding makeup</span>
+      <span class="lsi-tag lsi-missing">beauty salon</span>
+      <span class="lsi-tag lsi-missing">salon hours</span>
+      <span class="lsi-tag lsi-missing">book online</span>
+      <span class="lsi-tag lsi-missing">prices</span>
+      <span class="lsi-tag lsi-missing">Highway 15</span>
+      <span class="lsi-tag lsi-missing">nail art</span>
+      <span class="lsi-tag lsi-missing">full set</span>
+      <span class="lsi-tag lsi-missing">nail salon</span>
+      <span class="lsi-tag lsi-missing">hair salon</span>
+    </div>
+    <p style="color:var(--text-secondary);font-size:13px;margin-top:16px">The most critical missing terms are the location keywords. Google cannot determine that this salon is in Union, Mississippi without "Union," "Mississippi," or "MS" appearing in the title, H1, or body text of the page.</p>
+  </div>
+
+  <!-- Content Clusters -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Recommended Content Architecture</div>
+  <div class="section-subtitle">Pillar pages and supporting content to build topical authority in Union, MS</div>
+
+  <div class="cluster">
+    <div class="cluster-title">Cluster 1: Nail Services (highest revenue potential)</div>
+    <div class="cluster-pages">
+      <span class="cluster-page pillar">/ nails (Pillar Page — "Nail Salon Union MS")</span>
+      <span class="cluster-page">/nails/gel-x-extensions</span>
+      <span class="cluster-page">/nails/builder-gel</span>
+      <span class="cluster-page">/nails/gel-polish</span>
+      <span class="cluster-page">/gallery (with nail photos)</span>
+    </div>
+  </div>
+
+  <div class="cluster">
+    <div class="cluster-title">Cluster 2: Hair Services</div>
+    <div class="cluster-pages">
+      <span class="cluster-page pillar">/hair (Pillar Page — "Hair Salon Union MS")</span>
+      <span class="cluster-page">/hair/blow-dry</span>
+      <span class="cluster-page">/hair/trim</span>
+      <span class="cluster-page">/gallery (with hair photos)</span>
+    </div>
+  </div>
+
+  <div class="cluster">
+    <div class="cluster-title">Cluster 3: Events &amp; Bridal (high-value seasonal)</div>
+    <div class="cluster-pages">
+      <span class="cluster-page pillar">/special-events (Pillar — "Bridal &amp; Event Makeup Union Mississippi")</span>
+      <span class="cluster-page">/special-events/bridal-hair-makeup</span>
+      <span class="cluster-page">/special-events/prom-makeup</span>
+      <span class="cluster-page">/gallery (event photos)</span>
+    </div>
+  </div>
+
+  <!-- Content Gaps -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Content Gap Recommendations</div>
+  <div class="section-subtitle">High-value content the site should have but doesn't</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Write the About page — it is completely empty</div>
+      <div class="action-desc">The About section shows three placeholder blocks. A real About page builds E-E-A-T (Experience, Expertise, Authoritativeness, Trust) — a key Google ranking signal. Include: the stylist's name, years of experience, certifications/licenses, what makes Belle's different, and the salon's story. Even 200 words of real content will dramatically improve this section's SEO value.</div>
+      <div class="action-impact">&#10003; Impact: Builds trust with both Google and potential clients; adds keyword-rich content for "beauty salon Union MS" and local brand queries.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Add a FAQ section targeting "People Also Ask" keywords</div>
+      <div class="action-desc">Add a FAQ section to the homepage or service pages answering questions like: "How long do Gel X nails last?", "Do you take walk-ins?", "What nail services do you offer in Union MS?", "How do I book an appointment at Belle's Beauty?" These target featured snippet positions in Google and capture voice search queries.</div>
+      <div class="action-impact">&#10003; Impact: Featured snippet opportunities, additional keyword coverage, improves E-E-A-T signals.</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Add real gallery photos with keyword-rich alt text</div>
+      <div class="action-desc">The gallery shows 6 empty placeholders. Real photos of your work serve two SEO purposes: (1) Google Images is a legitimate traffic source for nail/hair searches, and (2) alt text on those images adds keyword signals. Name files descriptively: "gel-x-nails-union-mississippi.webp" and write alt text like "Gel X nail extensions with builder gel — Belle's Beauty &amp; Co., Union MS."</div>
+      <div class="action-impact">&#10003; Impact: Google Images traffic, additional keyword coverage, builds trust and conversion with real clients.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">4</div>
+    <div class="action-content">
+      <div class="action-title">Set up Google Business Profile if not already done</div>
+      <div class="action-desc">A Google Business Profile (formerly Google My Business) is the #1 local SEO asset for any brick-and-mortar business. It controls what appears in Google Maps, the local 3-pack, and the knowledge panel. Ensure the GBP name/address/phone exactly matches what's on your website (NAP consistency). Add photos, hours, services, and collect reviews there.</div>
+      <div class="action-impact">&#10003; Impact: Google Maps visibility, local 3-pack ranking, click-to-call from search results. This is free and arguably more important than the website itself for local search.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 6: INTERNAL LINKING ==================== -->
+<div id="tab-linking" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Internal Linking Analysis</div>
+  <div class="section-subtitle">Link equity distribution and navigation structure</div>
+
+  <div class="alert-box alert-critical">
+    <strong>&#9888; Critical Finding:</strong> All internal navigation uses JavaScript onclick handlers — there are zero crawlable &lt;a href&gt; links between sections. Search engine crawlers follow HTML &lt;a href&gt; links; they do not execute onclick JavaScript to discover pages. This means Google cannot follow any internal link on the site.
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">0</div>
+      <div class="stat-label">Crawlable Internal HTML Links</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3</div>
+      <div class="stat-label">In-Page Anchor Links (#)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3</div>
+      <div class="stat-label">External Links</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--red)">5</div>
+      <div class="stat-label">JS-Only Nav Sections</div>
+    </div>
+  </div>
+
+  <!-- Link Equity Distribution -->
+  <div class="section-title" style="font-size: 18px;">Link Equity Distribution</div>
+  <div class="section-subtitle">Current HTML link structure across the site</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Incoming HTML Links</th>
+          <th>Outgoing HTML Links</th>
+          <th>External Links</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">#landing</span></td>
+          <td>—</td>
+          <td>3 anchors (#gallery, #reviews, #contact)</td>
+          <td>1 (Facebook)</td>
+          <td><span class="badge badge-warning">No real links</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#special-events</span></td>
+          <td><span style="color:var(--red)">0 (JS only)</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="badge badge-fail">JS-only</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#hair-makeup</span></td>
+          <td><span style="color:var(--red)">0 (JS only)</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="badge badge-fail">JS-only</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#nails</span></td>
+          <td><span style="color:var(--red)">0 (JS only)</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="badge badge-fail">JS-only</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#about</span></td>
+          <td><span style="color:var(--red)">0 (JS only)</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td><span class="badge badge-fail">JS-only</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">footer</span></td>
+          <td>—</td>
+          <td>0 real hrefs</td>
+          <td>2 (Facebook + Google Maps)</td>
+          <td><span class="badge badge-warning">JS-only nav</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Suggested Internal Links -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Linking Recommendations</div>
+  <div class="section-subtitle">Changes to make internal navigation crawlable and link equity flow correctly</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Replace JS onclick navigation with real &lt;a href&gt; links</div>
+      <div class="action-desc">Currently: <code style="font-family:monospace;font-size:12px">&lt;a href="#" onclick="return navTo('nails')"&gt;Nails&lt;/a&gt;</code><br>Should be: <code style="font-family:monospace;font-size:12px">&lt;a href="/nails"&gt;Nails&lt;/a&gt;</code> (when separate pages exist) or at minimum <code style="font-family:monospace;font-size:12px">&lt;a href="#nails"&gt;Nails&lt;/a&gt;</code> (anchor hash). Hash links are crawlable by Google and create discoverable section anchors. The onclick handler can remain for the JS show/hide animation.</div>
+      <div class="action-impact">&#10003; Impact: Makes all navigation links crawlable. Google can discover and evaluate all sections. Essential for any SEO benefit from internal linking.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Add cross-service links within service descriptions</div>
+      <div class="action-desc">The Special Events section mentions hair and makeup but doesn't link to the Hair or Nails sections. After converting to separate pages, add contextual links like "Complete your look with our <a href='/nails'>nail services</a>" within service descriptions. This distributes link equity and helps Google understand site structure.</div>
+      <div class="action-impact">&#10003; Impact: Improves link equity distribution, reduces bounce rate, increases pages per session.</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Add a "Book Now" CTA link on every service section</div>
+      <div class="action-desc">Each service section has individual "Book Appointment" buttons that trigger JS, but there's no HTML link to a bookable URL. Add a standard link to your booking page (e.g., /book or anchor #booking) with real href so Google can crawl it as a conversion page.</div>
+      <div class="action-impact">&#10003; Impact: Signals booking intent to Google; creates a linkable destination for the booking flow.</div>
+    </div>
+    <span class="badge badge-low">Low</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 7: ACTION PLAN ==================== -->
+<div id="tab-actions" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Prioritized Action Plan</div>
+  <div class="section-subtitle">Every recommendation ranked by impact — start at the top and work down</div>
+
+  <!-- Quick Wins -->
+  <div class="section-title" style="font-size: 18px; color: var(--green); margin-bottom: 16px;">Quick Wins <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">— under 1 hour each</span></div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Update &lt;title&gt; tag with location and services</div>
+      <div class="action-desc">Change from "Belle's Beauty &amp; Co." to "Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup Salon — Union, MS". One line change in index.html with enormous local SEO impact.</div>
+      <div class="action-impact">&#10003; Highest local keyword impact. Ranks you for "[service] Union MS" queries.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Expand and fix meta description — add location and hit 150–160 chars</div>
+      <div class="action-desc">Rewrite from the current 82-char generic version to: "Belle's Beauty &amp; Co. is a full-service beauty salon in Union, Mississippi offering hair styling, gel nails, nail extensions, and event makeup. Book online today." (158 chars)</div>
+      <div class="action-impact">&#10003; Improves click-through rate in search results; signals local relevance to Google.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Add Open Graph, Twitter Card tags, favicon, and canonical tag</div>
+      <div class="action-desc">Copy the code block from the Technical tab and paste it into &lt;head&gt;. Replace YOUR-DOMAIN with your live URL. Export logo as 1200×630 og-image.jpg. Takes under 30 minutes.</div>
+      <div class="action-impact">&#10003; Every link shared on social media immediately looks professional with a preview card.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">4</div>
+    <div class="action-content">
+      <div class="action-title">Add LocalBusiness JSON-LD schema to &lt;head&gt;</div>
+      <div class="action-desc">Copy the schema block from the Technical tab, fill in your phone number, actual hours, and website URL once deployed. This is the single highest-ROI technical SEO action for a local business.</div>
+      <div class="action-impact">&#10003; Enables Google Maps integration, local 3-pack, rich results in SERP.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">5</div>
+    <div class="action-content">
+      <div class="action-title">Add an H1 tag to the landing section</div>
+      <div class="action-desc">Add &lt;h1 class="visually-hidden"&gt;Beauty Salon in Union, Mississippi — Hair, Nails &amp; Makeup&lt;/h1&gt; immediately after the &lt;section id="landing"&gt; tag. Use CSS to visually hide it without removing it from the DOM (use clip-path approach, not display:none). This tells Google the page's primary topic without changing the visual design.</div>
+      <div class="action-impact">&#10003; Fixes the missing H1 without redesigning the page. Strongest on-page keyword signal.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">6</div>
+    <div class="action-content">
+      <div class="action-title">Create robots.txt and sitemap.xml files</div>
+      <div class="action-desc">Create robots.txt (3 lines — see Site-Wide Issues tab) and sitemap.xml (single URL for now) in the project root. These take 5 minutes to create and are expected by every search engine crawler.</div>
+      <div class="action-impact">&#10003; Removes 404 errors for expected crawler files; submitting sitemap via Google Search Console accelerates indexing.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">7</div>
+    <div class="action-content">
+      <div class="action-title">Add phone number to footer and add loading="lazy" to images</div>
+      <div class="action-desc">Add your phone number as a tel: link next to the address in the footer. Also add loading="lazy" to the logo, hair-makeup.png, nails.png, and specialevents.png image tags.</div>
+      <div class="action-impact">&#10003; Phone enables NAP consistency for local SEO; lazy loading improves Core Web Vitals.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <!-- High Impact -->
+  <div class="section-title" style="font-size: 18px; color: var(--orange); margin-bottom: 16px; margin-top: 32px;">High Impact <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">— 1–4 hours each</span></div>
+
+  <div class="action-item">
+    <div class="action-number">8</div>
+    <div class="action-content">
+      <div class="action-title">Set up and optimize Google Business Profile</div>
+      <div class="action-desc">If not already done, claim/create a Google Business Profile at business.google.com. Add name, address, phone, hours, services, photos (at least 5), and website URL. Ensure NAP details exactly match the website. Ask satisfied clients to leave Google reviews.</div>
+      <div class="action-impact">&#10003; Google Maps and local 3-pack visibility is often more valuable than organic rankings for local businesses.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">9</div>
+    <div class="action-content">
+      <div class="action-title">Write real content for the About page</div>
+      <div class="action-desc">Replace all three "[Coming soon]" placeholder blocks with real content: stylist name and credentials, years of experience, the salon's story and specialties, and what makes Belle's different from other salons in the area. Include "Union, Mississippi" naturally in the text.</div>
+      <div class="action-impact">&#10003; Builds E-E-A-T trust signals; adds keyword-rich content; converts visitors who want to know who they're booking with.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">10</div>
+    <div class="action-content">
+      <div class="action-title">Add real gallery photos with descriptive alt text</div>
+      <div class="action-desc">Replace the 6 placeholder gallery boxes with actual photos of your work. Name files descriptively (e.g., gel-x-nails-union-ms.webp) and write keyword-rich alt text for each. Even 6–12 real photos transforms the gallery from a weakness to a strength.</div>
+      <div class="action-impact">&#10003; Google Images traffic, social proof for clients, additional on-page keyword signals.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">11</div>
+    <div class="action-content">
+      <div class="action-title">Add business hours to the website footer</div>
+      <div class="action-desc">Add operating hours to the footer next to the address. Include in the LocalBusiness schema as well. Users searching "beauty salon Union MS hours" need this information and Google uses it to display open/closed status.</div>
+      <div class="action-impact">&#10003; Reduces bounce rate from clients unsure if you're open; boosts local knowledge panel accuracy.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <!-- Strategic Initiatives -->
+  <div class="section-title" style="font-size: 18px; color: var(--purple); margin-bottom: 16px; margin-top: 32px;">Strategic Initiatives <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">— ongoing</span></div>
+
+  <div class="action-item">
+    <div class="action-number">12</div>
+    <div class="action-content">
+      <div class="action-title">Convert to multi-page website with separate URLs per service</div>
+      <div class="action-desc">Break index.html into separate pages: index.html (homepage), nails.html, hair.html, special-events.html, about.html, book.html. Each page gets its own title, H1, meta description, and canonical tag. This is the single highest-impact architectural change for long-term SEO.</div>
+      <div class="action-impact">&#10003; Each service page can independently rank for its own keywords. "Gel nails Union MS" can rank the nails page; "event makeup Union MS" ranks the events page. Multiplies potential search visibility by 5×.</div>
+    </div>
+    <span class="badge badge-critical">Critical (Long-term)</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">13</div>
+    <div class="action-content">
+      <div class="action-title">Build local citations on directories (Yelp, Yellow Pages, Facebook Business)</div>
+      <div class="action-desc">List Belle's Beauty &amp; Co. on Yelp, Facebook Business, Yellow Pages, Nextdoor, and any local Mississippi business directories. Ensure NAP (Name, Address, Phone) is identical across all listings and matches the website. This builds domain authority for local search.</div>
+      <div class="action-impact">&#10003; Local citation signals are a top-3 Google Maps ranking factor. Each consistent citation strengthens local authority.</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">14</div>
+    <div class="action-content">
+      <div class="action-title">Add a FAQ section targeting People Also Ask keywords</div>
+      <div class="action-desc">Research "People Also Ask" questions for "nail salon Union MS," "gel X nails," "event makeup Mississippi" and answer them in a FAQ section on the homepage or relevant service pages. Use FAQ schema markup on each Q&amp;A pair to target featured snippets.</div>
+      <div class="action-impact">&#10003; Featured snippet positioning, voice search coverage, additional long-tail keyword rankings.</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+  <!-- Full Checklist -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Full Implementation Checklist</div>
+  <div class="section-subtitle">Every action item in one place — check off as you complete them</div>
+  <div class="card">
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Update &lt;title&gt; to include location and services (e.g., "Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup — Union, MS")</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Expand meta description to 150–160 characters with "Union, Mississippi" included</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add visually-hidden H1 to landing section with target keyword phrase</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add LocalBusiness JSON-LD schema to &lt;head&gt;</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add Open Graph meta tags (og:title, og:description, og:image, og:url, og:type)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add Twitter Card meta tags (twitter:card, twitter:title, twitter:description, twitter:image)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Create favicon.ico and add &lt;link rel="icon"&gt; to &lt;head&gt;</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add canonical tag: &lt;link rel="canonical" href="https://yourdomain.com/"&gt;</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add phone number to footer as a tel: link</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add business hours to footer and to LocalBusiness schema</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Create robots.txt in project root (Allow: /, Sitemap: link)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Create sitemap.xml in project root with homepage URL</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Replace JS onclick navigation with real &lt;a href&gt; links (at minimum anchor hash links)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add loading="lazy" to all non-above-fold images</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Convert images from PNG to WebP format</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Write real About content (200+ words, include name, credentials, story, Union MS mention)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add real gallery photos with keyword-rich alt text</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Downgrade hidden section H1 tags to H2 (or add H1 to landing and keep others as H2)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Set up / optimize Google Business Profile with matching NAP, hours, photos, and services</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Submit sitemap.xml to Google Search Console after deployment</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Test security headers at securityheaders.com after deployment (target grade B or above)</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Add FAQ section with FAQ schema targeting common local service questions</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">Build local citations: Yelp, Yellow Pages, Facebook Business, Nextdoor</div></div>
+    <div class="checklist-item"><div class="check-icon fail">&#10007;</div><div class="check-text">[Long-term] Convert SPA to multi-page site (nails.html, hair.html, special-events.html, about.html)</div></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('.collapsible-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.closest('.collapsible').classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

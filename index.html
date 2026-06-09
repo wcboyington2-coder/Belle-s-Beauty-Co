@@ -3,8 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belle's Beauty & Co.</title>
-  <meta name="description" content="Belle's Beauty & Co. — Hair, Makeup & Nail services. Book your appointment today." />
+  <title>Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup Salon — Union, MS</title>
+  <meta name="description" content="Belle's Beauty &amp; Co. is a full-service beauty salon in Union, Mississippi offering hair styling, gel nails, nail extensions, and event makeup. Book your appointment online today." />
+  <link rel="canonical" href="https://bellesbeautyco.com/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/favicon-192.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="Belle's Beauty &amp; Co." />
+  <meta property="og:url"          content="https://bellesbeautyco.com/" />
+  <meta property="og:title"        content="Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup Salon — Union, MS" />
+  <meta property="og:description"  content="Full-service beauty salon in Union, Mississippi. Book hair styling, gel nails, nail extensions, and event makeup online." />
+  <meta property="og:image"        content="https://bellesbeautyco.com/images/og-image.jpg" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Belle's Beauty &amp; Co. | Hair, Nails &amp; Makeup — Union, MS" />
+  <meta name="twitter:description" content="Full-service beauty salon in Union, Mississippi. Book online." />
+  <meta name="twitter:image"       content="https://bellesbeautyco.com/images/og-image.jpg" />
+
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Belle's Beauty & Co.",
+    "description": "Full-service beauty salon in Union, Mississippi offering hair styling, gel nails, nail extensions, and event makeup.",
+    "url": "https://bellesbeautyco.com",
+    "telephone": "+1-601-575-2222",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "25025 Highway 15",
+      "addressLocality": "Union",
+      "addressRegion": "MS",
+      "postalCode": "39365",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 32.5723,
+      "longitude": -89.1179
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/1Wct53LKBZ/?mibextid=wwXIfr"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Beauty Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gel X Nails"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Builder Gel Nails"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gel Polish"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Event Makeup"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Event Hair"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shampoo & Blow Dry"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hair Trim"}}
+      ]
+    }
+  }
+  </script>
 
   <!-- Google Fonts: Playfair Display (display headings) + Jost (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,9 +117,13 @@
     <section id="landing" class="section active" aria-label="Home">
       <div class="landing-hero">
 
+        <h1 class="visually-hidden">Beauty Salon in Union, Mississippi — Hair, Nails &amp; Makeup</h1>
+
         <div class="landing-logo-wrap">
           <img src="images/logo.png" alt="Belle's Beauty & Co." class="landing-logo" />
         </div>
+
+        <p class="landing-location">Union, Mississippi</p>
 
         <p class="landing-tagline">Choose your service to begin.</p>
 
@@ -735,6 +802,9 @@
             <circle cx="12" cy="10" r="3"/>
           </svg>
           25025 Highway 15, Union, MS 39365
+        </p>
+        <p class="footer-phone">
+          <a href="tel:+16015752222">(601) 575-2222</a>
         </p>
       </div>
 
