@@ -7,7 +7,7 @@
 // ── Google Apps Script URL ────────────────────────────────────
 // Paste your Web App URL here after deploying google-apps-script/Code.gs.
 // Leave as empty string to use sample data during development.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvuzTZ_akJd74eXh9DPNTGtv93M4jLEXeK1Ra4b7vVgZG0FpEuQZQrZJICgvoM4gn7/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVGKPB10vsPO2ZTQbbfZr1yYALu-HBEmz7b6lpD7nme_sl2kSZ5MMv7wYcPazxdC5-/exec';
 
 // ── State ────────────────────────────────────────────────────
 const state = {
